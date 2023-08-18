@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <link rel="stylesheet" href="../static/style.css">
+        <title>Course List</title>
+    </head>
+    <body id="base">
+        <nav>
+            <div class="course-container">
+                <div class="container-text">
+                    <h1>Course Progress Tracker <aside>- A Flask Web Application</aside></h1>
+                </div>
+            </div>
+            <div class="nav-container">
+                <span>
+                    <a href="/">View Courses</a>
+                    <a href="/uni_modules">View University Modules</a>
+                    <a href="/learning_log">Learning Log</a>
+                    <a href="/add">Add or Modify a Course</a>
+                </span>
+            </div>
+        </nav>
+        
+        <div id="main">
+            {% block content %}
+            {% endblock %}
+        </div>
+
+        <footer>
+            <div class="course-container">
+                <div class="container-text">
+                    <h5>corey-richardson</h5>
+                    <span>
+                        <a href="https://linktr.ee/coreyrichardson">linktr.ee</a> |
+                        <a href="https://github.com/corey-richardson">GitHub</a> |
+                        <a href="https://www.linkedin.com/in/corey-richardson-833300247/">LinkedIn</a> |
+                        <p>&COPY; {{year}} Corey Richardson</p>
+                    </span>
+                </div>
+            </div>
+        </footer>
+
+    </body>
+</html>

@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="nav-container">
+    <nav>
+        <span>
+            <a href="/uni_modules">All Years</a>
+            <a href="/uni_modules/first">First Year</a>
+            <a href="/uni_modules/second">Second Year</a>
+            <a href="/uni_modules/placement">Placement Year</a>
+            <a href="/uni_modules/final">Final Year</a>
+        </span>
+    </nav>
+</div>
+
+{% for m in modules_list %}
+    <div class="course-container">
+        <div class="container-text">
+            <h2>{{m["name"]}} <aside>- {{m["code"]}}</aside></h2>
+            <p>{{m["desc"]}}</p>
+            <p>
+                <aside>{{m["year"]}} year - </aside>
+
+                {% if m["optional"] == "true" %}
+                <aside>Optional Module - </aside>
+                {% else %}
+                <aside>Core Module - </aside>
+                {% endif %}
+
+                {% if m["completed"] == "true" %}
+                    <span class="green dot"></span>
+                {% else %}
+                    <span class="red dot"></span>
+                {% endif %} 
+
+            </p>
+        </div>
+    </div>
+{% endfor %}
+
+{% endblock %}

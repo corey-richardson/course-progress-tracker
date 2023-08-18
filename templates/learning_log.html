@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="course-container">
+    <div class="container-text">
+        <h3>Create a New Post</h3>
+        <form method="post">
+            <table style="width: 100%; margin: 10px 0;">
+                {{ add_to_log.hidden_tag() }}
+                {% for field in add_to_log %}
+                    {% if field.type != "CSRFTokenField" %}
+                    <tr>
+                        <td style="width: 30%;">{{field.label.text}}</td>
+                        <td style="width: 70%;">{{field(autocomplete="off")}}</td>
+                    </tr>
+                    {% endif %}
+                {% endfor %}
+            </table>
+        </form>
+    </div>
+</div>
+
+{% for post in posts %}
+    <div class="course-container">
+        <div class="container-text">
+            <h2 style="margin-bottom: 0;">{{post["title"]}} <aside> - {{post["date"]}} {{post["time"]}}</aside></h2>
+            <h4 style="margin: 0 0;">{{post["topics"]}}</h4>
+            <p>{{post["body"]}}</p>
+            {% if post["link"] %}
+            <div class="nav-container">
+                <p> <a href="{{post['link']}}" target="_blank">{{post['link_title']}}</a> </p>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+{% endfor %}
+
+{% endblock %}
