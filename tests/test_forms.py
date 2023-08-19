@@ -59,9 +59,9 @@ def test_AddCourse_valid():
                 name = "Test Title",
                 desc = "This test ensures the Form accepts valid input.",
                 url = "https://docs.pytest.org/en/7.4.x",
-                provider = "PyTest Academy",
+                provider = "Pytest Academy",
                 length = "1 minute",
-                section = "PyTest",
+                section = "Pytest",
                 completed = "true",
                 csrf_token = csrf_token
             )
@@ -143,7 +143,7 @@ def test_AddToLog_valid():
                 title="Test Post Title",
                 topics="Test Post Topics",
                 body="Lorum Ipsum blah blah blah",
-                link_title="PyTest Documentation",
+                link_title="Pytest Documentation",
                 link="https://docs.pytest.org/en/7.4.x/",
                 csrf_token = csrf_token
             )
