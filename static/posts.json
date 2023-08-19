@@ -1,8 +1,8 @@
 [
     {
-        "title": "Added 'PyTest' Unit Testing for FlaskForms",
-        "topics": "Python, Flask, PyTest",
-        "body": "Added PyTest unit tests to test conditions: form input empty, form input valid, form input invalid, form input missing required fields. ",
+        "title": "Added 'Pytest' Unit Testing for FlaskForms",
+        "topics": "Python, Flask, Pytest",
+        "body": "Added Pytest unit tests to test conditions: form input empty, form input valid, form input invalid, form input missing required fields. ",
         "link_title": "Test directory in GitHub Repository",
         "link": "https://github.com/corey-richardson/course-progress-tracker/tree/main/tests",
         "date": "2023-08-19",
