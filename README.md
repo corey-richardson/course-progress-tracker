@@ -11,7 +11,7 @@ A Flask web application that can be used to track which courses and university m
     - [learning-log](#learning-log)
     - [add-or-modify-a-course](#add-or-modify-a-course)
     - [base-template](#base-template)
-- [Pytest-unit-testing](#Pytest-unit-testing)
+- [Pytest-unit-testing](#pytest-unit-testing)
 
 ---
 
