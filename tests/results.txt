@@ -1,31 +1,32 @@
 ============================= test session starts ==============================
-platform linux -- Python 3.10.8, pytest-7.4.0, pluggy-1.2.0 -- /usr/local/python/3.10.8/bin/python
+platform linux -- Python 3.10.8, pytest-7.4.0, pluggy-1.2.0 -- /home/codespace/.python/current/bin/python3
 cachedir: .pytest_cache
 rootdir: /workspaces/course-progress-tracker
 plugins: anyio-3.7.1
-collecting ... collected 15 items
+collecting ... collected 16 items
 
 tests/test_forms.py::test_AddCourse_empty PASSED                         [  6%]
-tests/test_forms.py::test_CourseCompleted_empty PASSED                   [ 13%]
-tests/test_forms.py::test_ModuleCompleted_empty PASSED                   [ 20%]
-tests/test_forms.py::test_AddToLog_empty PASSED                          [ 26%]
-tests/test_forms.py::test_AddCourse_valid PASSED                         [ 33%]
-tests/test_forms.py::test_CourseCompleted_valid PASSED                   [ 40%]
-tests/test_forms.py::test_CourseCompleted_invalid PASSED                 [ 46%]
-tests/test_forms.py::test_ModuleCompleted_valid PASSED                   [ 53%]
-tests/test_forms.py::test_ModuleCompleted_invalid PASSED                 [ 60%]
-tests/test_forms.py::test_AddToLog_valid PASSED                          [ 66%]
-tests/test_forms.py::test_AddToLog_valid_optional_fields PASSED          [ 73%]
-tests/test_forms.py::test__AddToLog_required_fields PASSED               [ 80%]
-tests/test_forms.py::test_CourseCompleted_required_fields PASSED         [ 86%]
-tests/test_forms.py::test_ModuleCompleted_required_fields PASSED         [ 93%]
-tests/test_forms.py::test_AddToLog_required_fields PASSED                [100%]
+tests/test_forms.py::test_AddCourse_valid PASSED                         [ 12%]
+tests/test_forms.py::test_AddToLog_empty PASSED                          [ 18%]
+tests/test_forms.py::test_AddToLog_valid PASSED                          [ 25%]
+tests/test_forms.py::test_AddToLog_valid_optional_fields PASSED          [ 31%]
+tests/test_forms.py::test_AddToLog_required_fields PASSED                [ 37%]
+tests/test_forms.py::test_AddToLog_only_link PASSED                      [ 43%]
+tests/test_forms.py::test_AddToLog_only_link_title PASSED                [ 50%]
+tests/test_forms.py::test_CourseCompleted_empty PASSED                   [ 56%]
+tests/test_forms.py::test_CourseCompleted_valid PASSED                   [ 62%]
+tests/test_forms.py::test_CourseCompleted_invalid PASSED                 [ 68%]
+tests/test_forms.py::test_CourseCompleted_required_fields PASSED         [ 75%]
+tests/test_forms.py::test_ModuleCompleted_empty PASSED                   [ 81%]
+tests/test_forms.py::test_ModuleCompleted_valid PASSED                   [ 87%]
+tests/test_forms.py::test_ModuleCompleted_invalid PASSED                 [ 93%]
+tests/test_forms.py::test_ModuleCompleted_required_fields PASSED         [100%]
 
 =============================== warnings summary ===============================
-../../opt/python/3.10.8/lib/python3.10/site-packages/flask_wtf/recaptcha/widgets.py:2
-../../opt/python/3.10.8/lib/python3.10/site-packages/flask_wtf/recaptcha/widgets.py:2
-  /opt/python/3.10.8/lib/python3.10/site-packages/flask_wtf/recaptcha/widgets.py:2: DeprecationWarning: 'flask.Markup' is deprecated and will be removed in Flask 2.4. Import 'markupsafe.Markup' instead.
+../../home/codespace/.python/current/lib/python3.10/site-packages/flask_wtf/recaptcha/widgets.py:2
+../../home/codespace/.python/current/lib/python3.10/site-packages/flask_wtf/recaptcha/widgets.py:2
+  /home/codespace/.python/current/lib/python3.10/site-packages/flask_wtf/recaptcha/widgets.py:2: DeprecationWarning: 'flask.Markup' is deprecated and will be removed in Flask 2.4. Import 'markupsafe.Markup' instead.
     from flask import Markup
 
 -- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
-======================== 15 passed, 2 warnings in 0.28s ========================
+======================== 16 passed, 2 warnings in 0.26s ========================

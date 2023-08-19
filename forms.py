@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, TextAreaField, URLField, SelectField, DateField, TimeField, SubmitField
-from wtforms.validators import DataRequired
+from wtforms.validators import DataRequired, ValidationError
 import json
 
 COURSE_FILE_PATH = "static/courses.json"
@@ -52,7 +52,22 @@ class ModuleCompleted(FlaskForm):
         choices=choices_list,
         validators=[DataRequired()])
     submit = SubmitField()
-    
+
+class LinkAndLinkTitleRequiredTogether:
+    def __init__(self, message=None):
+        self.message = message
+
+    def __call__(self, form, field):
+        link_title_data = form.link_title.data
+        link_data = form.link.data
+
+        if (link_title_data and not link_data) or (link_data and not link_title_data):
+            if self.message is None:
+                message = "Both Link and Link Title must be set together or neither should be set"
+            else:
+                message = self.message
+            raise ValidationError(message)
+        
 class AddToLog(FlaskForm):
     title = StringField("Title: ", validators=[DataRequired()])
     topics = StringField("Topics Covered: ", validators=[DataRequired()])
@@ -60,3 +75,11 @@ class AddToLog(FlaskForm):
     link_title = StringField("Link Title: ")
     link = URLField("Relevant Link: ")
     submit = SubmitField()
+    
+    link_and_link_title_validator = LinkAndLinkTitleRequiredTogether()
+
+    def validate(self):
+        if not super().validate():
+            return False
+        self.link_and_link_title_validator(self, self.link)
+        return True
