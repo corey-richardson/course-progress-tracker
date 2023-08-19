@@ -103,7 +103,7 @@ Parameter | Summary | Result
 
 - [`app.py::uni_modules`](https://github.com/corey-richardson/course-progress-tracker/blob/ce296945d6023d4de590ccac313a6e83b65a193c/app.py#L76)
 - [`templates/uni_modules.html`](https://github.com/corey-richardson/course-progress-tracker/blob/main/templates/uni_modules.html)
-- [`static/uni_modules.json`](https://github.com/corey-richardson/course-progress-tracker/blob/main/static/uni_modules.json)
+- [`static/modules.json`](https://github.com/corey-richardson/course-progress-tracker/blob/main/static/modules.json)
 
 ### Learning Log
 
