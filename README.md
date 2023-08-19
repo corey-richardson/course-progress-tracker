@@ -10,8 +10,11 @@ A Flask web application that can be used to track which courses and university m
     - [view-university-modules](#view-university-modules)
     - [learning-log](#learning-log)
     - [add-or-modify-a-course](#add-or-modify-a-course)
+- [html-and-css](#html-and-css)
     - [base-template](#base-template)
+    - [style.css](#stylecss)
 - [pytest-unit-testing](#pytest-unit-testing)
+- [file-structure](#file-structure)
 
 ---
 
@@ -139,11 +142,90 @@ Modify University Modules - `ModuleCompleted`
 - [`static/courses.json`](https://github.com/corey-richardson/course-progress-tracker/blob/main/static/courses.json)
 - [`static/uni_modules.json`](https://github.com/corey-richardson/course-progress-tracker/blob/main/static/uni_modules.json)
 
+---
+
+## HTML and CSS
+
+The HTML structure files can be found in the [`templates`](/templates/) directory. The CSS styling file can be found at [`static/style.css`](/static/style.css).
+
+[`templates/`](/templates/)
+- [`add.html`](/templates/add.html)
+- [`base.html`](/templates/base.html)
+- [`index.html`](/templates/index.html)
+- [`learning_log.html`](/templates/learning_log.html)
+- [`uni_modules.html`](/templates/uni_modules.html)
+
+[`static/`](/static/)
+- [`style.css`](/static/style.css)
+
 ### Base Template
 
-The base template is used across each page of the web application. It features the header, navigation bar and footer.
+The base template is used across each page of the web application. It features the header, navigation bar and footer. It also links the CSS styling file to the templates.
 
 - [`templates/base.html`](https://github.com/corey-richardson/course-progress-tracker/blob/main/templates/base.html)
+
+### style.css
+
+All elements follow the "Lucida Sans Unicode" `font-family`. <br>
+Colour variables `text`, `subtext`, `background`, `primary`, `second` and `accent` are defined in root. `green` and `red` are also defined for use by the `.dot` class.
+```css
+:root {
+    --text: #03272a;
+    --subtext: #5c8f94;
+    --background: #def9fc;
+    --primary: #c2f4fa;
+    --secondary: #95f3fd;
+    --accent: #12c9de;
+    --green: #0F0;
+    --red: #F00;
+  }
+  
+* {
+    font-family: "Lucida Grande", "Lucida Sans Unicode";
+    color: var(--text);
+    padding: 0;
+}
+```
+
+Courses and modules are encapsulated using the `course-container` and `container-text` classes. 
+```css
+.course-container {
+    background-color: var(--primary);
+    border: solid var(--accent);
+    border-radius: 5px;
+    margin: 5px 0;
+}
+  
+.container-text {
+    margin: 0 20px;
+}
+```
+
+Navigational links `<a>` are encapsulated with the `nav-container` class.
+```css
+.nav-container a {
+    width: 20%;
+    background-color: var(--primary);
+    border: solid var(--accent);
+    border-radius: 5px;
+    padding: 0 5px;
+    font-weight: bold;
+    text-align: center;
+    flex-grow: 1;
+    margin: 5px 0;
+    margin-right: 10px;
+}
+  
+.nav-container a:last-child {
+    margin-right: 0;
+}
+  
+.nav-container span {
+    display: flex;
+}
+```
+
+- [`static/style.css`](/static/style.css)
 
 ---
 
@@ -181,3 +263,28 @@ Pytest -v tests/test_forms.py > tests/results.txt
 - [`tests/test_forms.py`](/tests/test_forms.py)
 - [`tests/run_tests.sh`](/tests/run_tests.sh)
 - [`tests/results.txt`](/tests/results.txt)
+
+---
+
+## File Structure
+
+The layout of the project should look as follows *(venv/documentation files omitted)*:
+```
+static/
+    courses.json
+    modules.json
+    posts.json
+    style.css
+templates/
+    add.html
+    base.html
+    index.html
+    learning_log.html
+    uni_modules.html
+tests/
+    results.txt
+    run_tests.sh
+    test_forms.py
+app.py
+forms.py
+```
