@@ -90,24 +90,7 @@ def test_AddToLog_valid():
             assert form.validate()
             assert not form.errors
 
-def test_AddToLog_valid_optional_fields():
-    with app.test_request_context('/learning_log'):
-        with app.test_client() as client:
-            response = client.get('/learning_log')
-            csrf_token = extract_csrf_token(response.data.decode("utf-8"))       
-                        
-            form = AddToLog(
-                title="Test Post Title",
-                topics="Test Post Topics",
-                body="Lorum Ipsum blah blah blah",
-                csrf_token = csrf_token
-            )
-
-            assert form.validate()
-            assert not form.errors
-            
-
-def test_AddToLog_required_fields():
+def test_AddToLog_missing_required_field():
     with app.test_request_context('/learning_log'):
         with app.test_client() as client:
             response = client.get('/learning_log')
@@ -122,6 +105,23 @@ def test_AddToLog_required_fields():
             assert not form.validate()
             assert 'topics' in form.errors 
 
+def test_AddToLog_valid_missing_optional_fields():
+    with app.test_request_context('/learning_log'):
+        with app.test_client() as client:
+            response = client.get('/learning_log')
+            csrf_token = extract_csrf_token(response.data.decode("utf-8"))       
+                        
+            form = AddToLog(
+                title="Test Post Title",
+                topics="Test Post Topics",
+                body="Lorum Ipsum blah blah blah",
+                csrf_token = csrf_token
+            )
+
+            assert form.validate()
+            assert not form.errors
+
+# 'link' set but not 'link_title'           
 def test_AddToLog_only_link():
     with app.test_request_context('/learning_log'):
         with app.test_client() as client:
@@ -134,9 +134,10 @@ def test_AddToLog_only_link():
                 link="https://docs.pytest.org/en/7.4.x/",
                 csrf_token=csrf_token
             )
-            with pytest.raises(ValidationError):
-                form.validate()
-        
+            assert not form.validate_on_submit()
+            assert form.errors
+
+# 'link_title' set but not 'link'     
 def test_AddToLog_only_link_title():
     with app.test_request_context('/learning_log'):
         with app.test_client() as client:
@@ -149,8 +150,8 @@ def test_AddToLog_only_link_title():
                 link_title="Test Link Title",
                 csrf_token=csrf_token
             )
-            with pytest.raises(ValidationError):
-                form.validate()
+            assert not form.validate_on_submit()
+            assert form.errors
                 
 ###########################################################
 # The following test cases test the form: CourseCompleted #
@@ -194,7 +195,7 @@ def test_CourseCompleted_invalid():
             assert not form.validate()
             assert form.errors
 
-def test_CourseCompleted_required_fields():
+def test_CourseCompleted_misssing_required_field():
     with app.test_request_context('/add'):
         with app.test_client() as client:
             response = client.get('/add')
@@ -250,7 +251,7 @@ def test_ModuleCompleted_invalid():
             assert not form.validate()
             assert form.errors
         
-def test_ModuleCompleted_required_fields():
+def test_ModuleCompleted_missing_required_field():
     with app.test_request_context('/add'):
         with app.test_client() as client:
             response = client.get('/add')
@@ -264,17 +265,3 @@ def test_ModuleCompleted_required_fields():
             assert not form.validate()
             assert 'completed_module' in form.errors
         
-def test_AddToLog_required_fields():
-    with app.test_request_context('/learning_log'):
-        with app.test_client() as client:
-            response = client.get('/learning_log')
-            csrf_token = extract_csrf_token(response.data.decode("utf-8")) 
-            
-            form = AddToLog(
-                title="Test Post Title",
-                topics="",
-                body="Lorum Ipsum blah blah blah",
-                csrf_token=csrf_token
-            )
-            assert not form.validate()
-            assert 'topics' in form.errors

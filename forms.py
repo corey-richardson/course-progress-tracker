@@ -75,11 +75,18 @@ class AddToLog(FlaskForm):
     link_title = StringField("Link Title: ")
     link = URLField("Relevant Link: ")
     submit = SubmitField()
-    
+
     link_and_link_title_validator = LinkAndLinkTitleRequiredTogether()
 
-    def validate(self):
+    def validate_on_submit(self):
         if not super().validate():
             return False
-        self.link_and_link_title_validator(self, self.link)
+        
+        try:
+            self.link_and_link_title_validator(self, self.link)
+        except ValidationError:
+            self.link_title.errors.append("Both Link and Link Title must be set together or neither should be set")
+            self.link.errors.append("Both Link and Link Title must be set together or neither should be set")
+            return False
+
         return True

@@ -1,5 +1,15 @@
 [
     {
+        "title": "Wrote documentation for Course Progress Tracker Project",
+        "topics": "Documentation, GitHub, MarkDown",
+        "body": "GitHub README file containing the software description and unit testing guide containing screenshots of the web application, code snippets and explanations. ",
+        "link_title": "README.md file in GitHub Repository",
+        "link": "https://github.com/corey-richardson/course-progress-tracker/blob/main/README.md",
+        "date": "2023-08-19",
+        "time": "15:14",
+        "sort_time": "2023-08-19 15:14:17.336613"
+    },
+    {
         "title": "Added 'Pytest' Unit Testing for FlaskForms",
         "topics": "Python, Flask, Pytest",
         "body": "Added Pytest unit tests to test conditions: form input empty, form input valid, form input invalid, form input missing required fields. ",
@@ -20,13 +30,13 @@
         "sort_time": "2023-08-18 10:36:49.734692"
     },
     {
-        "title": "Wrote documentation for Course Progress Tracker Project",
-        "topics": "Documentation, GitHub, MarkDown",
-        "body": "GitHub README file containing the software description and unit testing guide containing screenshots of the web application, code snippets and explanations. ",
-        "link_title": "README.md file in GitHub Repository",
-        "link": "https://github.com/corey-richardson/course-progress-tracker/blob/main/README.md",
+        "title": "Update to 'forms.py'",
+        "topics": "Python, Flask, Pytest",
+        "body": "Update to 'forms.py' to ensure that the form only successfully validates if BOTH or NEITHER of 'link_title' and 'link' are set (mutually inclusive events). Added two new test cases to test_forms.py to reflect this; 'test_AddToLog_only_link' and 'test_AddToLog_only_link_title'. Also, reordered the tests so same-form tests are together.",
+        "link_title": "forms.py in GitHub Repository",
+        "link": "https://github.com/corey-richardson/course-progress-tracker/blob/main/forms.py",
         "date": "2023-08-19",
-        "time": "15:14",
-        "sort_time": "2023-08-19 15:14:17.336613"
+        "time": "20:58",
+        "sort_time": "2023-08-19 20:58:14.780802"
     }
 ]
