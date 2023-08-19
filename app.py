@@ -1,5 +1,5 @@
 from flask import Flask, render_template, redirect, url_for
-from form import CourseCompleted, ModuleCompleted, AddCourse, AddToLog
+from forms import CourseCompleted, ModuleCompleted, AddCourse, AddToLog
 from datetime import datetime
 import json
 
