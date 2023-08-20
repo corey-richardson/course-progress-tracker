@@ -60,6 +60,8 @@ Parameter | Summary | Result
 `"complete"` | Displays the subset of the courses which have been marked as completed. | ![](/res/complete.jpg)
 `"uncomplete"` | Displays the subset of the courses which have been marked as not completed.  | ![](/res/uncomplete.jpg)
 
+![](/res/flow_diagrams/Index.svg)
+
 - [`app.py::index`](https://github.com/corey-richardson/course-progress-tracker/blob/ce296945d6023d4de590ccac313a6e83b65a193c/app.py#L38C3-L38C3)
 - [`templates/index.html`](https://github.com/corey-richardson/course-progress-tracker/blob/main/templates/index.html)
 - [`static/courses.json`](https://github.com/corey-richardson/course-progress-tracker/blob/main/static/courses.json)
@@ -104,6 +106,8 @@ Parameter | Summary | Result
 `"placement`" | Displays the subset of the modules from the optional placement year of the course. | ![](/res/uni_modules_placement.jpg)
 `"final"` | Displays the subset of the modules from the final year of study. | ![](/res/uni_modules_final.jpg)
 
+![](/res/flow_diagrams/Uni_Modules.svg)
+
 - [`app.py::uni_modules`](https://github.com/corey-richardson/course-progress-tracker/blob/ce296945d6023d4de590ccac313a6e83b65a193c/app.py#L76)
 - [`templates/uni_modules.html`](https://github.com/corey-richardson/course-progress-tracker/blob/main/templates/uni_modules.html)
 - [`static/modules.json`](https://github.com/corey-richardson/course-progress-tracker/blob/main/static/modules.json)
@@ -113,6 +117,8 @@ Parameter | Summary | Result
 The View University Modules page can be found at `127.0.0.1:5000/learning_log` (or equivalent). It featues a 'Create a New Post' form and reads and displays the posts from `static/posts.json`, reverse ordered by datetime of posting (newest to oldest).
 
 ![](/res/learning_log.jpg)
+
+![](/res/flow_diagrams/Learning_Log.svg)
 
 - [`app.py::view_log`](https://github.com/corey-richardson/course-progress-tracker/blob/ce296945d6023d4de590ccac313a6e83b65a193c/app.py#L198)
 - [`forms.py::AddToLog`](https://github.com/corey-richardson/course-progress-tracker/blob/ce296945d6023d4de590ccac313a6e83b65a193c/forms.py#L56)
@@ -133,6 +139,8 @@ Modify University Modules - `ModuleCompleted`
 - Allows the user to change the status of a university module between completed and not completed.
 
 ![](/res/add.jpg)
+
+![](/res/flow_diagrams/Add.svg)
 
 - [`app.py::add`](https://github.com/corey-richardson/course-progress-tracker/blob/ce296945d6023d4de590ccac313a6e83b65a193c/app.py#L111)
 - [`forms.py::AddCourse`](https://github.com/corey-richardson/course-progress-tracker/blob/ce296945d6023d4de590ccac313a6e83b65a193c/forms.py#L9)
