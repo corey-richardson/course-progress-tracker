@@ -23,19 +23,9 @@
 
 <div class="course-container">
     <div class="container-text">
-        <h3>View Posts Within Range of Dates </h3>
         <form method="post">
-            <table style="width: 100%; margin: 10px 0;">
-                {{ date_range.hidden_tag() }}
-                {% for field in date_range %}
-                    {% if field.type != "CSRFTokenField" %}
-                    <tr>
-                        <td style="width: 30%;">{{field.label.text}}</td>
-                        <td style="width: 70%;">{{field(autocomplete="off")}}</td>
-                    </tr>
-                    {% endif %}
-                {% endfor %}
-            </table>
+            {{ date_range.hidden_tag() }}
+            <p>View posts only between {{date_range.start_date()}} and {{date_range.end_date()}} {{date_range.submit()}}</p>
         </form>
     </div>
 </div>

@@ -97,6 +97,6 @@ class AddToLog(FlaskForm):
         return True
     
 class DateRange(FlaskForm):
-    start_date = DateField("Start Date: ", validators=[DataRequired()], default = datetime(2023, 8, 18))
+    start_date = DateField("Start Date: ", validators=[DataRequired()], default = datetime(2023, 8, 16))
     end_date = DateField("End Date: ", validators=[DataRequired()], default = datetime.now())
     submit = SubmitField()
