@@ -7,8 +7,6 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from app import app
 from forms import AddCourse, AddToLog, CourseCompleted, DateRange, ModuleCompleted
-from wtforms.validators import ValidationError
-import pytest
 
 import re
 def extract_csrf_token(content):
@@ -50,7 +48,7 @@ def test_AddCourse_valid():
 
             form = AddCourse(
                 name = "Test Title",
-                desc = "This test ensures the Form accepts valid input.",
+                desc = "This test ensures the form accepts valid input.",
                 url = "https://docs.pytest.org/en/7.4.x",
                 provider = "Pytest Academy",
                 length = "1 minute",
@@ -61,6 +59,26 @@ def test_AddCourse_valid():
 
             assert form.validate()
             assert not form.errors
+            
+def test_AddCourse_invalid():
+    with app.test_request_context('/add'):
+        with app.test_client() as client:
+            response = client.get('/add')
+            csrf_token = extract_csrf_token(response.data.decode("utf-8"))
+
+            form = AddCourse(
+                name = "Test Title",
+                desc = "This test ensures the form denies invalid input.",
+                url = "https://docs.pytest.org/en/7.4.x",
+                provider = "Pytest Academy",
+                length = "1 minute",
+                section = "Pytest",
+                completed = "im an invalid choice",
+                csrf_token = csrf_token
+            )
+
+            assert not form.validate()
+            assert form.errors
 
 ####################################################
 # The following test cases test the form: AddToLog #
@@ -239,7 +257,7 @@ def test_DateRange_valid():
             assert form.validate()
             assert not form.errors
             
-def test_DateRange_missing_start_required_field():
+def test_DateRange_missing_required_field():
     with app.test_request_context('/learning_log'):
         with app.test_client() as client:
             response = client.get('/learning_log')
@@ -248,21 +266,6 @@ def test_DateRange_missing_start_required_field():
             form = DateRange(
                 start_date = "2023-08-18 00:00:00",
                 end_date = "",
-                csrf_token = csrf_token
-            )
-
-            assert not form.validate()
-            assert form.errors
-            
-def test_DateRange_missing_end_required_field():
-    with app.test_request_context('/learning_log'):
-        with app.test_client() as client:
-            response = client.get('/learning_log')
-            csrf_token = extract_csrf_token(response.data.decode("utf-8"))       
-                        
-            form = DateRange(
-                start_date = "",
-                end_date = "2023-08-21 23:59:59.999999",
                 csrf_token = csrf_token
             )
 

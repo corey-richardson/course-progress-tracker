@@ -77,8 +77,8 @@ class AddToLog(FlaskForm):
     project = StringField("*Project or Course Name: ", validators=[DataRequired()])
     topics = StringField("*Topics Covered: ", validators=[DataRequired()])
     body = TextAreaField("*Post Contents: ", validators=[DataRequired()])
-    link_title = StringField("Link Title: ")
-    link = URLField("Relevant Link: ")
+    link_title = StringField("URL Title: ")
+    link = URLField("URL: ")
     submit = SubmitField()
 
     link_and_link_title_validator = LinkAndLinkTitleRequiredTogether()
@@ -97,6 +97,14 @@ class AddToLog(FlaskForm):
         return True
     
 class DateRange(FlaskForm):
-    start_date = DateField("Start Date: ", validators=[DataRequired()], default = datetime(2023, 8, 16))
+    # Only runs once when flask app is first enabled
+    with open(POSTS_FILE_PATH, "r") as j:
+            posts = json.load(j)
+    earliest_datetime = min(
+        posts, 
+        key=lambda x: datetime.strptime(
+            x["sort_time"], "%Y-%m-%d %H:%M:%S.%f"))
+
+    start_date = DateField("Start Date: ", validators=[DataRequired()], default = datetime.strptime(earliest_datetime["sort_time"], "%Y-%m-%d %H:%M:%S.%f"))
     end_date = DateField("End Date: ", validators=[DataRequired()], default = datetime.now())
     submit = SubmitField()

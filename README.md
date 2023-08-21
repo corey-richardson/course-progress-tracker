@@ -263,7 +263,7 @@ To run the unit testing:
 5. Either run the bash script [`run_tests.sh`](/tests/run_tests.sh) OR in the terminal type:
 ```
 source bin/activate
-pytest -v tests/test_forms.py > tests/results.txt
+pytest -v --no-header tests/test_forms.py > tests/results.txt
 deactivate
 ```
 6. Navigate to [`tests/results.txt`](/tests/results.txt) and ensure all tests pass.
