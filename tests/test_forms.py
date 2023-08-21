@@ -6,7 +6,7 @@ import os
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from app import app
-from forms import AddCourse, AddToLog, CourseCompleted, ModuleCompleted
+from forms import AddCourse, AddToLog, CourseCompleted, DateRange, ModuleCompleted
 from wtforms.validators import ValidationError
 import pytest
 
@@ -214,6 +214,61 @@ def test_CourseCompleted_misssing_required_field():
             assert not form.validate()
             assert 'completed_course' in form.errors                       
 
+#####################################################
+# The following test cases test the form: DateRange #
+#####################################################
+
+def test_DateRange_empty():
+    with app.test_request_context("/learning_log"):
+        form = DateRange()
+        assert not form.validate()
+        assert form.errors
+
+def test_DateRange_valid():
+    with app.test_request_context('/learning_log'):
+        with app.test_client() as client:
+            response = client.get('/learning_log')
+            csrf_token = extract_csrf_token(response.data.decode("utf-8"))       
+                        
+            form = DateRange(
+                start_date = "2023-08-18 00:00:00",
+                end_date = "2023-08-21 23:59:59.999999",
+                csrf_token = csrf_token
+            )
+
+            assert form.validate()
+            assert not form.errors
+            
+def test_DateRange_missing_start_required_field():
+    with app.test_request_context('/learning_log'):
+        with app.test_client() as client:
+            response = client.get('/learning_log')
+            csrf_token = extract_csrf_token(response.data.decode("utf-8"))       
+                        
+            form = DateRange(
+                start_date = "2023-08-18 00:00:00",
+                end_date = "",
+                csrf_token = csrf_token
+            )
+
+            assert not form.validate()
+            assert form.errors
+            
+def test_DateRange_missing_end_required_field():
+    with app.test_request_context('/learning_log'):
+        with app.test_client() as client:
+            response = client.get('/learning_log')
+            csrf_token = extract_csrf_token(response.data.decode("utf-8"))       
+                        
+            form = DateRange(
+                start_date = "",
+                end_date = "2023-08-21 23:59:59.999999",
+                csrf_token = csrf_token
+            )
+
+            assert not form.validate()
+            assert form.errors
+            
 ###########################################################
 # The following test cases test the form: ModuleCompleted #
 ###########################################################

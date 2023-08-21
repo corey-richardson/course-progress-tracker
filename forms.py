@@ -2,9 +2,11 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, TextAreaField, URLField, SelectField, DateField, TimeField, SubmitField
 from wtforms.validators import DataRequired, ValidationError
 import json
+from datetime import datetime
 
 COURSE_FILE_PATH = "static/courses.json"
 MODULE_FILE_PATH = "static/modules.json"
+POSTS_FILE_PATH = "static/posts.json"
 
 # , render_kw={"placeholder": "Set post title..."}
 
@@ -93,3 +95,8 @@ class AddToLog(FlaskForm):
             return False
 
         return True
+    
+class DateRange(FlaskForm):
+    start_date = DateField("Start Date: ", validators=[DataRequired()], default = datetime(2023, 8, 18))
+    end_date = DateField("End Date: ", validators=[DataRequired()], default = datetime.now())
+    submit = SubmitField()

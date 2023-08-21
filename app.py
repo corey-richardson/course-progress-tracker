@@ -1,5 +1,5 @@
 from flask import Flask, render_template, redirect, url_for
-from forms import CourseCompleted, ModuleCompleted, AddCourse, AddToLog
+from forms import CourseCompleted, ModuleCompleted, AddCourse, AddToLog, DateRange
 from datetime import datetime
 import json
 
@@ -199,12 +199,23 @@ def view_log():
     
     # Initialise form
     add_to_log = AddToLog()
+    date_range = DateRange()
     
     with open(POSTS_FILE_PATH, "r") as j:
             posts = json.load(j)
     
     # Sort posts by datetime        
     posts.sort(key = lambda p: p["sort_time"], reverse=True)
+    
+    if date_range.validate_on_submit():
+        start_date = datetime.combine(date_range.start_date.data, datetime.min.time())
+        end_date = datetime.combine(date_range.end_date.data, datetime.max.time())
+        temp = []
+        for post in posts:
+            p = datetime.strptime(post["sort_time"], "%Y-%m-%d %H:%M:%S.%f")
+            if p >= start_date and p <= end_date:
+                temp.append(post)
+        posts = temp.copy()
     
     # When 'add_to_log' is successfully submitted...
     if add_to_log.validate_on_submit():
@@ -247,4 +258,5 @@ def view_log():
         "learning_log.html",
         posts = posts,
         add_to_log = add_to_log,
+        date_range = date_range,
     )
