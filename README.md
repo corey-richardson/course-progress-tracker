@@ -53,14 +53,14 @@ match status:
         pass
 ```
 
+![](/res/flow_diagrams/Index.svg)
+
 Parameter | Summary | Result
 --- | --- | ---
 `"alphabetical"` | Displays all courses ordered alphabetically by course name. | ![](/res/alphabetical.jpg)
 `"by_provider"` | Displays all courses ordered alphabetically by course provider name. | ![](/res/by_provider.jpg)
 `"complete"` | Displays the subset of the courses which have been marked as completed. | ![](/res/complete.jpg)
 `"uncomplete"` | Displays the subset of the courses which have been marked as not completed.  | ![](/res/uncomplete.jpg)
-
-![](/res/flow_diagrams/Index.svg)
 
 - [`app.py::index`](https://github.com/corey-richardson/course-progress-tracker/blob/ce296945d6023d4de590ccac313a6e83b65a193c/app.py#L38C3-L38C3)
 - [`templates/index.html`](https://github.com/corey-richardson/course-progress-tracker/blob/main/templates/index.html)
@@ -99,14 +99,14 @@ match year:
         pass
 ```
 
+![](/res/flow_diagrams/Uni_Modules.svg)
+
 Parameter | Summary | Result
 --- | --- | ---
 `"first"` | Displays the subset of the modules from the first year of study. | ![](/res/uni_modules_first.jpg)
 `"second"` | Displays the subset of the modules from the second year of study. | ![](/res/uni_modules_second.jpg)
 `"placement`" | Displays the subset of the modules from the optional placement year of the course. | ![](/res/uni_modules_placement.jpg)
 `"final"` | Displays the subset of the modules from the final year of study. | ![](/res/uni_modules_final.jpg)
-
-![](/res/flow_diagrams/Uni_Modules.svg)
 
 - [`app.py::uni_modules`](https://github.com/corey-richardson/course-progress-tracker/blob/ce296945d6023d4de590ccac313a6e83b65a193c/app.py#L76)
 - [`templates/uni_modules.html`](https://github.com/corey-richardson/course-progress-tracker/blob/main/templates/uni_modules.html)
@@ -256,17 +256,17 @@ def test_AddCourse_empty():
 
 To run the unit testing:
 
-1. Activate the virtual environment with the command `source bin/activate`.
-2. Check that *"Learn Python 3"* is present as a course name in [`courses.json`](/static/courses.json).
-3. Check that *"Learn Skydiving for Beginners"* is **NOT** present as a course name in [`courses.json`](/static/courses.json).
-4. Check that *""Software Engineering 1"* is present as a module name in [`modules.json`](/static/modules.json).
-5. Check that *"Learn Skydiving for Beginners"* is **NOT** present as a module name in [`modules.json`](/static/modules.json).
-6. Either run the below command from the terminal OR run the bash script [`run_tests.sh`](/tests/run_tests.sh).
+1. Check that *"Learn Python 3"* is present as a course name in [`courses.json`](/static/courses.json).
+2. Check that *"Learn Skydiving for Beginners"* is **NOT** present as a course name in [`courses.json`](/static/courses.json).
+3. Check that *""Software Engineering 1"* is present as a module name in [`modules.json`](/static/modules.json).
+4. Check that *"Learn Skydiving for Beginners"* is **NOT** present as a module name in [`modules.json`](/static/modules.json).
+5. Either run the bash script [`run_tests.sh`](/tests/run_tests.sh) OR in the terminal type:
 ```
-Pytest -v tests/test_forms.py > tests/results.txt
+source bin/activate
+pytest -v tests/test_forms.py > tests/results.txt
+deactivate
 ```
-7. Navigate to [`tests/results.txt`](/tests/results.txt) and ensure all tests pass.
-8. Deactivate the virtual environment with the command `deactivate`.
+6. Navigate to [`tests/results.txt`](/tests/results.txt) and ensure all tests pass.
 
 - [`tests/test_forms.py`](/tests/test_forms.py)
 - [`tests/run_tests.sh`](/tests/run_tests.sh)
