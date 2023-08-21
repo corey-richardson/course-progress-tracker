@@ -11,15 +11,30 @@ POSTS_FILE_PATH = "static/posts.json"
 # , render_kw={"placeholder": "Set post title..."}
 
 class AddCourse(FlaskForm):
-    name = StringField("Course Name: ", validators=[DataRequired()])
-    desc = TextAreaField("Course Description: ", validators=[DataRequired()])
-    url = URLField("Course Link: ", validators=[DataRequired()])
-    provider = StringField("Course Provider: ", validators=[DataRequired()])
-    length = StringField("Course Duration: ", validators=[DataRequired()])
-    section = StringField("Topic: ", validators=[DataRequired()])  
+    name = StringField(
+        "Course Name: ", 
+        validators=[DataRequired()])
+    desc = TextAreaField(
+        "Course Description: ", 
+        validators=[DataRequired()])
+    url = URLField(
+        "Course Link: ", 
+        validators=[DataRequired()])
+    provider = StringField(
+        "Course Provider: ", 
+        validators=[DataRequired()])
+    length = StringField(
+        "Course Duration: ", 
+        validators=[DataRequired()])
+    section = StringField(
+        "Topic: ", 
+        validators=[DataRequired()])  
     completed = SelectField(
         "Have you completed this course? ", 
-        choices=[("true","Yes"),("false","No")], default="false")
+        choices=[
+            ("true","Yes"),
+            ("false","No")], 
+        default="false")
     
     submit = SubmitField()
     
@@ -28,15 +43,21 @@ class CourseCompleted(FlaskForm):
     def __init__(self, *args, **kwargs):
         super(CourseCompleted, self).__init__(*args, **kwargs)
         self.update_course_choices() 
+    # Method to update the 'choices_list' list. Called on instance 
+    # initialisation and on page load to ensure list contains any courses 
+    # that were just added by the AddCourse form.
     def update_course_choices(self):
         with open(COURSE_FILE_PATH, "r") as j:
             courses = json.load(j)["course list"]   
         choices_list = [course["name"] for course in courses]
         self.completed_course.choices = sorted(choices_list)
         
-    status = SelectField("Status: ",
-                         choices=[("true","finished"),("false","unfinished")],
-                         validators=[DataRequired()])
+    status = SelectField(
+        "Status: ",
+        choices=[
+            ("true","finished"),
+            ("false","unfinished")],
+        validators=[DataRequired()])
     completed_course = SelectField(
         "Mark Course as Completed:", 
         validators=[DataRequired()])
@@ -47,20 +68,24 @@ class ModuleCompleted(FlaskForm):
     with open(MODULE_FILE_PATH, "r") as j:
         modules = json.load(j)["module list"]    
     choices_list = [module["name"] for module in modules]
+    
     status = SelectField(
         "Status: ",
-        choices=[("true","finished"),("false","unfinished")],
+        choices=[
+            ("true","finished"),
+            ("false","unfinished")],
         validators=[DataRequired()])
     completed_module = SelectField(
         "Mark Course as Completed:", 
         choices=choices_list,
         validators=[DataRequired()])
+    
     submit = SubmitField()
 
 class LinkAndLinkTitleRequiredTogether:
     def __init__(self, message=None):
         self.message = message
-
+        
     def __call__(self, form, field):
         link_title_data = form.link_title.data
         link_data = form.link.data
@@ -73,16 +98,28 @@ class LinkAndLinkTitleRequiredTogether:
             raise ValidationError(message)
         
 class AddToLog(FlaskForm):
-    title = StringField("*Title: ", validators=[DataRequired()])
-    project = StringField("*Project or Course Name: ", validators=[DataRequired()])
-    topics = StringField("*Topics Covered: ", validators=[DataRequired()])
-    body = TextAreaField("*Post Contents: ", validators=[DataRequired()])
-    link_title = StringField("URL Title: ")
-    link = URLField("URL: ")
+    
+    title = StringField(
+        "*Title: ", 
+        validators=[DataRequired()])
+    project = StringField(
+        "*Project or Course Name: ", 
+        validators=[DataRequired()])
+    topics = StringField(
+        "*Topics Covered: ", 
+        validators=[DataRequired()])
+    body = TextAreaField(
+        "*Post Contents: ", 
+        validators=[DataRequired()])
+    
+    link_title = StringField("Link Title: ")
+    link = URLField("Link URL: ")
     submit = SubmitField()
 
     link_and_link_title_validator = LinkAndLinkTitleRequiredTogether()
 
+    # Override the validate on submit method to perform additional custom
+    # validation on 'link_title' and 'link'
     def validate_on_submit(self):
         if not super().validate():
             return False
@@ -105,6 +142,14 @@ class DateRange(FlaskForm):
         key=lambda x: datetime.strptime(
             x["sort_time"], "%Y-%m-%d %H:%M:%S.%f"))
 
-    start_date = DateField("Start Date: ", validators=[DataRequired()], default = datetime.strptime(earliest_datetime["sort_time"], "%Y-%m-%d %H:%M:%S.%f"))
-    end_date = DateField("End Date: ", validators=[DataRequired()], default = datetime.now())
+    start_date = DateField(
+        "Start Date: ", 
+        validators=[DataRequired()], 
+        default = datetime.strptime(
+            earliest_datetime["sort_time"], "%Y-%m-%d %H:%M:%S.%f"))
+    end_date = DateField(
+        "End Date: ", 
+        validators=[DataRequired()], 
+        default = datetime.now())
+    
     submit = SubmitField()
