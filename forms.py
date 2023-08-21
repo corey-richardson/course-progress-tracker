@@ -6,6 +6,8 @@ import json
 COURSE_FILE_PATH = "static/courses.json"
 MODULE_FILE_PATH = "static/modules.json"
 
+# , render_kw={"placeholder": "Set post title..."}
+
 class AddCourse(FlaskForm):
     name = StringField("Course Name: ", validators=[DataRequired()])
     desc = TextAreaField("Course Description: ", validators=[DataRequired()])
@@ -70,6 +72,7 @@ class LinkAndLinkTitleRequiredTogether:
         
 class AddToLog(FlaskForm):
     title = StringField("*Title: ", validators=[DataRequired()])
+    project = StringField("*Project or Course Name: ", validators=[DataRequired()])
     topics = StringField("*Topics Covered: ", validators=[DataRequired()])
     body = TextAreaField("*Post Contents: ", validators=[DataRequired()])
     link_title = StringField("Link Title: ")

@@ -17,15 +17,15 @@
                 {% endfor %}
             </table>
         </form>
-        <p><aside>Title, Topics Covered and Post Contents are mandatory fields. Link Title and Relevant Link and optional but mutually inclusive.</aside></p>
+        <p><aside>Title, Project or Course Name, Topics Covered and Post Contents are mandatory fields. Link Title and Relevant Link are optional but mutually inclusive.</aside></p>
     </div>
 </div>
 
 {% for post in posts %}
     <div class="course-container">
         <div class="container-text">
-            <h2 style="margin-bottom: 0;">{{post["title"]}} <aside> - {{post["date"]}} {{post["time"]}}</aside></h2>
-            <h4 style="margin: 0 0;">{{post["topics"]}}</h4>
+            <h2 style="margin-bottom: 0;">{{post["title"]}} <aside> - {{post["date"]}} at {{post["time"]}}</aside></h2>
+            <h4 style="margin: 0 0;">{{post["project"]}} <aside> - {{post["topics"]}}</aside></h4>
             <p>{{post["body"]}}</p>
             {% if post["link"] %}
             <div class="nav-container">

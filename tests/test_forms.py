@@ -80,6 +80,7 @@ def test_AddToLog_valid():
                         
             form = AddToLog(
                 title="Test Post Title",
+                project="Test Project",
                 topics="Test Post Topics",
                 body="Lorum Ipsum blah blah blah",
                 link_title="Pytest Documentation",
@@ -98,6 +99,7 @@ def test_AddToLog_missing_required_field():
                 
             form = AddToLog(
                 title="Test Title",
+                project="Test Project",
                 topics="",
                 body="Test Body",
                 csrf_token=csrf_token
@@ -113,6 +115,7 @@ def test_AddToLog_valid_missing_optional_fields():
                         
             form = AddToLog(
                 title="Test Post Title",
+                project="Test Project",
                 topics="Test Post Topics",
                 body="Lorum Ipsum blah blah blah",
                 csrf_token = csrf_token
@@ -129,6 +132,7 @@ def test_AddToLog_only_link():
             csrf_token = extract_csrf_token(response.data.decode("utf-8")) 
             form = AddToLog(
                 title="Test Post Title",
+                project="Test Project",
                 topics="Pytest",
                 body="Lorum Ipsum blah blah blah",
                 link="https://docs.pytest.org/en/7.4.x/",
@@ -145,6 +149,7 @@ def test_AddToLog_only_link_title():
             csrf_token = extract_csrf_token(response.data.decode("utf-8")) 
             form = AddToLog(
                 title="Test Post Title",
+                project="Test Project",
                 topics="Pytest",
                 body="Lorum Ipsum blah blah blah",
                 link_title="Test Link Title",

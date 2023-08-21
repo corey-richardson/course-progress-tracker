@@ -220,7 +220,7 @@ def view_log():
             link_title = None
             link = None
         # Get current date times and format
-        date = datetime.now().strftime("%Y-%m-%d")
+        date = datetime.now().strftime("%d/%m/%Y")
         time = datetime.now().strftime("%H:%M")
         sort_time = datetime.now()
         
