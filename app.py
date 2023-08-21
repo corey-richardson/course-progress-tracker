@@ -221,6 +221,7 @@ def view_log():
     if add_to_log.validate_on_submit():
         # Set vars from field data
         title = add_to_log.title.data
+        project = add_to_log.project.data
         topics = add_to_log.topics.data
         body = add_to_log.body.data
         # Optional inputs
@@ -238,6 +239,7 @@ def view_log():
          # Format data to be appended to json
         data = {
             "title" : f"{title}",
+            "project" : f"{project}",
             "topics" : f"{topics}",
             "body"  : f"{body}",
             "link_title" : f"{link_title}",
