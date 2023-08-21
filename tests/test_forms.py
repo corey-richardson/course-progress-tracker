@@ -1,46 +1,47 @@
 # USAGE:
-# pytest -v tests/test_forms.py > tests/results.txt
+# pytest -v --no-header tests/test_forms.py > tests/results.txt
 
 import sys
 import os
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from app import app
-from forms import AddCourse, AddToLog, CourseCompleted, DateRange, ModuleCompleted
+from forms import (
+    AddCourse, 
+    AddToLog, 
+    CourseCompleted, 
+    DateRange, 
+    ModuleCompleted,
+)
 
 import re
 def extract_csrf_token(content):
-    match = re.search(r'<input[^>]*name="csrf_token"[^>]*value="([^"]+)"', content)
+    match = re.search(
+        r'<input[^>]*name="csrf_token"[^>]*value="([^"]+)"', 
+        content)
     if match:
         return match.group(1)
     return None
-
-#################################################################################
-# The following tests ensure that an error is raised if the form is left empty. #
-# This checks the DataRequired() validators present on most fields.             #
-#                                                                               #
-# The following tests ensure that the forms successfully validate when valid    #
-# input data is submitted.                                                      #
-#                                                                               #
-# The following tests ensure that the form doesn't validate when a required     #
-# field is missing.                                                             #
-#                                                                               #
-# The following tests ensure that the form don't validate either both or        #
-# neither of 'link' and 'link_title' are set.                                   #
-# link and link_title OR not link and not link_title                            # 
-#################################################################################
 
 #####################################################
 # The following test cases test the form: AddCourse #
 #####################################################
 
 def test_AddCourse_empty():
+    '''
+    Test an empty AddCourse form
+    Expect the form to fail validation
+    '''
     with app.test_request_context("/add"):
         form = AddCourse()
         assert not form.validate()
         assert form.errors
 
 def test_AddCourse_valid():
+    '''
+    Test a valid AddCourse form
+    Expect the form to fail validation
+    '''
     with app.test_request_context('/add'):
         with app.test_client() as client:
             response = client.get('/add')
@@ -61,6 +62,10 @@ def test_AddCourse_valid():
             assert not form.errors
             
 def test_AddCourse_invalid():
+    '''
+    Test an invalid AddCourse form
+    Expect the form to fail validation
+    '''
     with app.test_request_context('/add'):
         with app.test_client() as client:
             response = client.get('/add')
@@ -85,12 +90,20 @@ def test_AddCourse_invalid():
 ####################################################
         
 def test_AddToLog_empty():
+    '''
+    Test an empty AddToLog form
+    Expect the form to fail validation
+    '''
     with app.test_request_context("/learning_log"):
         form = AddToLog()
         assert not form.validate()
         assert form.errors
         
 def test_AddToLog_valid():
+    '''
+    Test a valid AddToLog form
+    Expect the form to pass validation
+    '''
     with app.test_request_context('/learning_log'):
         with app.test_client() as client:
             response = client.get('/learning_log')
@@ -110,6 +123,10 @@ def test_AddToLog_valid():
             assert not form.errors
 
 def test_AddToLog_missing_required_field():
+    '''
+    Test a AddToLog form with missing required fields
+    Expect the form to fail validation, listing 'topics' in the form errors
+    '''
     with app.test_request_context('/learning_log'):
         with app.test_client() as client:
             response = client.get('/learning_log')
@@ -126,6 +143,10 @@ def test_AddToLog_missing_required_field():
             assert 'topics' in form.errors 
 
 def test_AddToLog_valid_missing_optional_fields():
+    '''
+    Test a valid AddToLog form missing optional fields
+    Expect the form to pass validation
+    '''
     with app.test_request_context('/learning_log'):
         with app.test_client() as client:
             response = client.get('/learning_log')
@@ -144,6 +165,11 @@ def test_AddToLog_valid_missing_optional_fields():
 
 # 'link' set but not 'link_title'           
 def test_AddToLog_only_link():
+    '''
+    Test an invalid AddToLog form where 'link' is set but 'link_title'
+    is not; mutually inclusive events.
+    Expect the form to fail validation
+    '''
     with app.test_request_context('/learning_log'):
         with app.test_client() as client:
             response = client.get('/learning_log')
@@ -161,6 +187,11 @@ def test_AddToLog_only_link():
 
 # 'link_title' set but not 'link'     
 def test_AddToLog_only_link_title():
+    '''
+    Test an invalid AddToLog form where 'link_title' is set but 'link'
+    is not; mutually inclusive events.
+    Expect the form to fail validation
+    '''
     with app.test_request_context('/learning_log'):
         with app.test_client() as client:
             response = client.get('/learning_log')
@@ -181,6 +212,10 @@ def test_AddToLog_only_link_title():
 ###########################################################
                                       
 def test_CourseCompleted_empty():
+    '''
+    Test an empty CourseCompleted form
+    Expect the form to fail validation
+    '''
     with app.test_request_context("/add"):
         form = CourseCompleted()
         assert not form.validate()
@@ -188,6 +223,10 @@ def test_CourseCompleted_empty():
 
 # ENSURE "Learn Python 3" IS IN THE COURSE LIST BEFORE TESTING           
 def test_CourseCompleted_valid():
+    '''
+    Test a valid CourseCompleted form
+    Expect the form to pass validation
+    '''
     with app.test_request_context('/add'):
         with app.test_client() as client:
             response = client.get('/add')
@@ -202,8 +241,14 @@ def test_CourseCompleted_valid():
             assert form.validate()
             assert not form.errors
 
-# ENSURE "Learn Skydiving for Beginners" IS *NOT* IN THE COURSE LIST BEFORE TESTING            
+# ENSURE "Learn Skydiving for Beginners" IS *NOT* IN THE 
+# COURSE LIST BEFORE TESTING            
 def test_CourseCompleted_invalid():
+    '''
+    Test an invalid CourseCompleted form; 'Learn Skydiving for Beginners' is
+    not a valid choice
+    Expect the form to fail validation 
+    '''
     with app.test_request_context('/add'):
         with app.test_client() as client:
             response = client.get('/add')
@@ -219,6 +264,10 @@ def test_CourseCompleted_invalid():
             assert form.errors
 
 def test_CourseCompleted_misssing_required_field():
+    '''
+    Test a CourseCompleted form with missing required fields
+    Expect the form to fail validation
+    '''
     with app.test_request_context('/add'):
         with app.test_client() as client:
             response = client.get('/add')
@@ -237,12 +286,20 @@ def test_CourseCompleted_misssing_required_field():
 #####################################################
 
 def test_DateRange_empty():
+    '''
+    Test an empty DateRange form
+    Expect the form to fail validation
+    '''
     with app.test_request_context("/learning_log"):
         form = DateRange()
         assert not form.validate()
         assert form.errors
 
 def test_DateRange_valid():
+    '''
+    Test a valid DateRange form
+    Expect the form to pass validation
+    '''
     with app.test_request_context('/learning_log'):
         with app.test_client() as client:
             response = client.get('/learning_log')
@@ -258,6 +315,10 @@ def test_DateRange_valid():
             assert not form.errors
             
 def test_DateRange_missing_required_field():
+    '''
+    Test a DateRange form with mising required fields
+    Expect the form to fail validation
+    '''
     with app.test_request_context('/learning_log'):
         with app.test_client() as client:
             response = client.get('/learning_log')
@@ -277,6 +338,10 @@ def test_DateRange_missing_required_field():
 ###########################################################
 
 def test_ModuleCompleted_empty():
+    '''
+    Test an empty ModuleCompleted form
+    Expect the form to fail validation
+    '''
     with app.test_request_context("/add"):
         form = ModuleCompleted()
         assert not form.validate()
@@ -284,6 +349,10 @@ def test_ModuleCompleted_empty():
       
 # ENSURE "Software Engineering 1" IS IN THE MODULE LIST BEFORE TESTING           
 def test_ModuleCompleted_valid():
+    '''
+    Test a valid ModuleCompleted form
+    Expect the form to pass validation
+    '''
     with app.test_request_context('/add'):
         with app.test_client() as client:
             response = client.get('/add')
@@ -298,8 +367,14 @@ def test_ModuleCompleted_valid():
             assert form.validate()
             assert not form.errors
 
-# ENSURE "Learn Skydiving for Beginners" IS *NOT* IN THE MODULE LIST BEFORE TESTING            
+# ENSURE "Learn Skydiving for Beginners" IS *NOT* IN THE 
+# MODULE LIST BEFORE TESTING            
 def test_ModuleCompleted_invalid():
+    '''
+    Test an invalid ModuleCompleted form; 'Learn Skydiving for Beginners' is
+    not a valid choice
+    Expect the form to fail validation
+    '''
     with app.test_request_context('/add'):
         with app.test_client() as client:
             response = client.get('/add')
@@ -315,6 +390,10 @@ def test_ModuleCompleted_invalid():
             assert form.errors
         
 def test_ModuleCompleted_missing_required_field():
+    '''
+    Test a ModuleCompleted form with missing required fields
+    Expect the form to fail validation
+    '''
     with app.test_request_context('/add'):
         with app.test_client() as client:
             response = client.get('/add')
