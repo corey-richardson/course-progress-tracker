@@ -68,7 +68,7 @@ Parameter | Summary | Result
 
 ### View University Modules
 
-The View University Modules page can be found at `http://127.0.0.1:5000/uni_modules` (or equivalent). It reads and displays each course and information related to the course from `static/modules.json`.
+The View University Modules page can be found at `127.0.0.1:5000/uni_modules` (or equivalent). It reads and displays each course and information related to the course from `static/modules.json`.
 
 ![](/res/uni_modules.jpg)
 
