@@ -69,9 +69,9 @@ class LinkAndLinkTitleRequiredTogether:
             raise ValidationError(message)
         
 class AddToLog(FlaskForm):
-    title = StringField("Title: ", validators=[DataRequired()])
-    topics = StringField("Topics Covered: ", validators=[DataRequired()])
-    body = TextAreaField("Post Contents: ", validators=[DataRequired()])
+    title = StringField("*Title: ", validators=[DataRequired()])
+    topics = StringField("*Topics Covered: ", validators=[DataRequired()])
+    body = TextAreaField("*Post Contents: ", validators=[DataRequired()])
     link_title = StringField("Link Title: ")
     link = URLField("Relevant Link: ")
     submit = SubmitField()
