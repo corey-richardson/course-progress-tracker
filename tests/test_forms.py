@@ -1,5 +1,5 @@
 # USAGE:
-# pytest -v --no-header tests/test_forms.py > tests/results.txt
+# pytest -v --no-header tests/test_forms.py | tee tests/results.txt
 
 import sys
 import os
