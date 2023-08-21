@@ -64,8 +64,14 @@ source venv/bin/activate
 
 4. Install required packages using pip:
 ```bash
-pip install Flask Flask-WTF
+pip install Flask Flask-WTF pytest
 ```
+
+5. Run the `pytest` command below.
+```bash
+pytest -v --no-header tests/test_forms.py | tee tests/results.txt
+```
+> The `pytest` tests will run, and you will see the test output in the terminal as well as in the `results.txt` file in the `test/` directory.
 
 ## Step 3: Run the Flask Application
 
