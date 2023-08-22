@@ -7,7 +7,8 @@
             "provider": "Codecademy",
             "length": "25 hours",
             "section": "Python",
-            "completed": "true"
+            "completed": "true",
+            "owner": "corey-richardson"
         },
         {
             "name": "Learn Intermediate Python 3",
@@ -16,7 +17,8 @@
             "provider": "Codecademy",
             "length": "15 hours",
             "section": "Python",
-            "completed": "true"
+            "completed": "true",
+            "owner": "corey-richardson"
         },
         {
             "name": "Learn Advanced Python 3",
@@ -25,7 +27,8 @@
             "provider": "Codecademy",
             "length": "9 hours",
             "section": "Python",
-            "completed": "true"
+            "completed": "true",
+            "owner": "corey-richardson"
         },
         {
             "name": "Learn Flask",
@@ -34,7 +37,8 @@
             "provider": "Codecademy",
             "length": "10 hours",
             "section": "Flask, Python",
-            "completed": "true"
+            "completed": "true",
+            "owner": "corey-richardson"
         },
         {
             "name": "Build Python Web Apps with Django",
@@ -43,7 +47,8 @@
             "provider": "Codecademy",
             "length": "10 weeks",
             "section": "Django, Python",
-            "completed": "false"
+            "completed": "false",
+            "owner": "corey-richardson"
         },
         {
             "name": "Learn C#",
@@ -52,7 +57,8 @@
             "provider": "Codecademy",
             "length": "30 hours",
             "section": "C#",
-            "completed": "true"
+            "completed": "true",
+            "owner": "corey-richardson"
         },
         {
             "name": "C# Basics for Beginners: Learn C# Fundamentals by Coding",
@@ -61,7 +67,8 @@
             "provider": "Udemy, Mosh Hamedani",
             "length": "6 hours",
             "section": "C#",
-            "completed": "false"
+            "completed": "false",
+            "owner": "corey-richardson"
         },
         {
             "name": "C# Intermediate: Classes, Interfaces and OOP",
@@ -70,7 +77,8 @@
             "provider": "Udemy, Mosh Hamedani",
             "length": "5.5 hours",
             "section": "C#",
-            "completed": "false"
+            "completed": "false",
+            "owner": "corey-richardson"
         },
         {
             "name": "C# Advanced Topics: Prepare for Technical Interviews",
@@ -79,7 +87,8 @@
             "provider": "Udemy, Mosh Hamedani",
             "length": "3 hours",
             "section": "C#",
-            "completed": "false"
+            "completed": "false",
+            "owner": "corey-richardson"
         },
         {
             "name": "Learn C",
@@ -88,7 +97,8 @@
             "provider": "Codecademy",
             "length": "2 months",
             "section": "C",
-            "completed": "true"
+            "completed": "true",
+            "owner": "corey-richardson"
         },
         {
             "name": "C Programming For Beginners",
@@ -97,7 +107,8 @@
             "provider": "Udemy, Huw Collingbourne",
             "length": "6 hours",
             "section": "C",
-            "completed": "false"
+            "completed": "false",
+            "owner": "corey-richardson"
         },
         {
             "name": "Learn C++",
@@ -106,7 +117,8 @@
             "provider": "Codecademy",
             "length": "25 hours",
             "section": "C++",
-            "completed": "true"
+            "completed": "true",
+            "owner": "corey-richardson"
         },
         {
             "name": "CS50X Introduction to Computer Science",
@@ -115,7 +127,8 @@
             "provider": "Harvard",
             "length": "11 weeks",
             "section": "CS50, CompSci",
-            "completed": "false"
+            "completed": "false",
+            "owner": "corey-richardson"
         },
         {
             "name": "CS50P Introduction to Programming with Python",
@@ -124,7 +137,8 @@
             "provider": "Harvard",
             "length": "10 weeks",
             "section": "CS50, Python",
-            "completed": "true"
+            "completed": "true",
+            "owner": "corey-richardson"
         },
         {
             "name": "CS50W Web Programming with Python and JavaScript",
@@ -133,7 +147,8 @@
             "provider": "Harvard",
             "length": "9 weeks",
             "section": "CS50, Fullstack",
-            "completed": "false"
+            "completed": "false",
+            "owner": "corey-richardson"
         },
         {
             "name": "CS50AI Introduction to Artificial Intelligence with Python",
@@ -142,7 +157,8 @@
             "provider": "Harvard",
             "length": "7 weeks",
             "section": "CS50, AI, Python",
-            "completed": "false"
+            "completed": "false",
+            "owner": "corey-richardson"
         },
         {
             "name": "CS50 Games",
@@ -151,7 +167,8 @@
             "provider": "Harvard",
             "length": "12 weeks",
             "section": "CS50, C#, Lua, Unity",
-            "completed": "false"
+            "completed": "false",
+            "owner": "corey-richardson"
         },
         {
             "name": "Machine Learning/AI Engineer Career Path ",
@@ -160,7 +177,8 @@
             "provider": "Codecademy",
             "length": "4 months",
             "section": "ML, Python",
-            "completed": "true"
+            "completed": "true",
+            "owner": "corey-richardson"
         },
         {
             "name": "Learn Kotlin",
@@ -169,7 +187,8 @@
             "provider": "Codecademy",
             "length": "15 hours",
             "section": "Kotlin",
-            "completed": "false"
+            "completed": "false",
+            "owner": "corey-richardson"
         },
         {
             "name": "Introduction to Computer Science and Programming in Python",
@@ -178,7 +197,8 @@
             "provider": "MIT",
             "length": "12 weeks",
             "section": "OSSU Core CS",
-            "completed": "false"
+            "completed": "false",
+            "owner": "corey-richardson"
         },
         {
             "name": "How to Code: Simple Data",
@@ -187,7 +207,8 @@
             "provider": "University of British Columbia",
             "length": "7 weeks",
             "section": "OSSU Core CS",
-            "completed": "false"
+            "completed": "false",
+            "owner": "corey-richardson"
         },
         {
             "name": "How to Code: Complex Data",
@@ -196,7 +217,8 @@
             "provider": "University of British Columbia",
             "length": "6 weeks",
             "section": "OSSU Core CS",
-            "completed": "false"
+            "completed": "false",
+            "owner": "corey-richardson"
         },
         {
             "name": "Programming Languages, Part A",
@@ -205,7 +227,8 @@
             "provider": "University of Washington",
             "length": "29 hours",
             "section": "OSSU Core CS",
-            "completed": "false"
+            "completed": "false",
+            "owner": "corey-richardson"
         },
         {
             "name": "Programming Languages, Part B",
@@ -214,7 +237,8 @@
             "provider": "University of Washington",
             "length": "16 hours",
             "section": "OSSU Core CS",
-            "completed": "false"
+            "completed": "false",
+            "owner": "corey-richardson"
         },
         {
             "name": "Programming Languages, Part C",
@@ -223,7 +247,8 @@
             "provider": "University of Washington",
             "length": "18 hours",
             "section": "OSSU Core CS",
-            "completed": "false"
+            "completed": "false",
+            "owner": "corey-richardson"
         },
         {
             "name": "Object-Oriented Design",
@@ -232,7 +257,8 @@
             "provider": "University of Alberta",
             "length": "17 hours",
             "section": "OSSU Core CS",
-            "completed": "false"
+            "completed": "false",
+            "owner": "corey-richardson"
         },
         {
             "name": "Design Patterns",
@@ -241,7 +267,8 @@
             "provider": "University of Alberta",
             "length": "15 hours",
             "section": "OSSU Core CS",
-            "completed": "false"
+            "completed": "false",
+            "owner": "corey-richardson"
         },
         {
             "name": "Software Architecture",
@@ -250,7 +277,8 @@
             "provider": "University of Alberta",
             "length": "9 hours",
             "section": "OSSU Core CS",
-            "completed": "false"
+            "completed": "false",
+            "owner": "corey-richardson"
         },
         {
             "name": "Calculus 1A: Differentiation",
@@ -259,7 +287,8 @@
             "provider": "MIT",
             "length": "13 weeks",
             "section": "OSSU Core Maths",
-            "completed": "false"
+            "completed": "false",
+            "owner": "corey-richardson"
         },
         {
             "name": "Calculus 1B: Integration",
@@ -268,7 +297,8 @@
             "provider": "MIT",
             "length": "15 weeks",
             "section": "OSSU Core Maths",
-            "completed": "false"
+            "completed": "false",
+            "owner": "corey-richardson"
         },
         {
             "name": "Calculus 1C: Coordinate Systems & Infinite Series",
@@ -277,7 +307,8 @@
             "provider": "MIT",
             "length": "13 weeks",
             "section": "OSSU Core Maths",
-            "completed": "false"
+            "completed": "false",
+            "owner": "corey-richardson"
         },
         {
             "name": "Mathematics for Computer Science",
@@ -286,7 +317,8 @@
             "provider": "MIT",
             "length": "13 weeks",
             "section": "OSSU Core Maths",
-            "completed": "false"
+            "completed": "false",
+            "owner": "corey-richardson"
         },
         {
             "name": "The Missing Semester of Your CS Education",
@@ -295,7 +327,8 @@
             "provider": "MIT",
             "length": "2 weeks",
             "section": "CS Tools",
-            "completed": "false"
+            "completed": "false",
+            "owner": "corey-richardson"
         },
         {
             "name": "Build a Modern Computer from First Principles: From Nand to Tetris",
@@ -304,7 +337,8 @@
             "provider": "Coursera",
             "length": "43 hours",
             "section": "OSSU Core Systems",
-            "completed": "false"
+            "completed": "false",
+            "owner": "corey-richardson"
         },
         {
             "name": "Build a Modern Computer from First Principles: Nand to Tetris Part II",
@@ -313,7 +347,8 @@
             "provider": "Coursera",
             "length": "89 hours",
             "section": "OSSU Core Systems",
-            "completed": "false"
+            "completed": "false",
+            "owner": "corey-richardson"
         },
         {
             "name": "Operating Systems: Three Easy Pieces",
@@ -322,7 +357,8 @@
             "provider": "OSSU",
             "length": "80-200 hours",
             "section": "OSSU Core Systems",
-            "completed": "false"
+            "completed": "false",
+            "owner": "corey-richardson"
         },
         {
             "name": "Computer Networking: A Top Down Approach",
@@ -331,7 +367,8 @@
             "provider": "Jim Kurose, Keith Ross",
             "length": "8 weeks",
             "section": "OSSU Core Systems",
-            "completed": "false"
+            "completed": "false",
+            "owner": "corey-richardson"
         },
         {
             "name": "Divide and Conquer, Sorting and Searching, and Randomized Algorithms",
@@ -340,7 +377,8 @@
             "provider": "Stanford",
             "length": "16 hours",
             "section": "OSSU Core Theory",
-            "completed": "false"
+            "completed": "false",
+            "owner": "corey-richardson"
         },
         {
             "name": "Graph Search, Shortest Paths, and Data Structures",
@@ -349,7 +387,8 @@
             "provider": "Stanford",
             "length": "15 hours",
             "section": "OSSU Core Theory",
-            "completed": "false"
+            "completed": "false",
+            "owner": "corey-richardson"
         },
         {
             "name": "Greedy Algorithms, Minimum Spanning Trees, and Dynamic Programming",
@@ -358,7 +397,8 @@
             "provider": "Stanford",
             "length": "15 hours",
             "section": "OSSU Core Theory",
-            "completed": "false"
+            "completed": "false",
+            "owner": "corey-richardson"
         },
         {
             "name": "Shortest Paths Revisited, NP-Complete Problems and What To Do About Them",
@@ -367,7 +407,8 @@
             "provider": "Stanford",
             "length": "13 hours",
             "section": "OSSU Core Theory",
-            "completed": "false"
+            "completed": "false",
+            "owner": "corey-richardson"
         },
         {
             "name": "Cybersecurity Fundamentals",
@@ -376,7 +417,8 @@
             "provider": "Rochester Institute of Technology",
             "length": "8 weeks",
             "section": "OSSU Core Security",
-            "completed": "false"
+            "completed": "false",
+            "owner": "corey-richardson"
         },
         {
             "name": "Principles of Secure Coding",
@@ -385,7 +427,8 @@
             "provider": "UCDavis",
             "length": "15 hours",
             "section": "OSSU Core Security",
-            "completed": "false"
+            "completed": "false",
+            "owner": "corey-richardson"
         },
         {
             "name": "Identifying Security Vulnerabilities",
@@ -394,7 +437,8 @@
             "provider": "UCDavis",
             "length": "13 hours",
             "section": "OSSU Core Security",
-            "completed": "false"
+            "completed": "false",
+            "owner": "corey-richardson"
         },
         {
             "name": "Identifying Security Vulnerabilities in C/C++Programming",
@@ -403,7 +447,8 @@
             "provider": "UCDavis",
             "length": "22 hours",
             "section": "OSSU Core Security",
-            "completed": "false"
+            "completed": "false",
+            "owner": "corey-richardson"
         },
         {
             "name": "Databases: Modeling and Theory",
@@ -412,7 +457,8 @@
             "provider": "Stanford University",
             "length": "2 weeks",
             "section": "OSSU Core Applications",
-            "completed": "false"
+            "completed": "false",
+            "owner": "corey-richardson"
         },
         {
             "name": "Databases: Relational Databases and SQL",
@@ -421,7 +467,8 @@
             "provider": "Stanford University",
             "length": "2 weeks",
             "section": "OSSU Core Applications",
-            "completed": "false"
+            "completed": "false",
+            "owner": "corey-richardson"
         },
         {
             "name": "Databases: Semistructured Data",
@@ -430,7 +477,8 @@
             "provider": "Stanford University",
             "length": "2 weeks",
             "section": "OSSU Core Applications",
-            "completed": "false"
+            "completed": "false",
+            "owner": "corey-richardson"
         },
         {
             "name": "Machine Learning Specialization",
@@ -439,7 +487,8 @@
             "provider": "Stanford and DeepLearningAI",
             "length": "8 weeks",
             "section": "OSSU Core Applications",
-            "completed": "false"
+            "completed": "false",
+            "owner": "corey-richardson"
         },
         {
             "name": "Computer Graphics",
@@ -448,7 +497,8 @@
             "provider": "The University of California, San Diego",
             "length": "6 weeks",
             "section": "OSSU Core Applications",
-            "completed": "false"
+            "completed": "false",
+            "owner": "corey-richardson"
         },
         {
             "name": "Software Engineering: Introduction",
@@ -457,7 +507,8 @@
             "provider": "University of British Columbia",
             "length": "6 weeks",
             "section": "OSSU Core Applications",
-            "completed": "false"
+            "completed": "false",
+            "owner": "corey-richardson"
         },
         {
             "name": "Ethics, Technology and Engineering",
@@ -466,7 +517,8 @@
             "provider": "Eindhoven University of Technology",
             "length": "19 hours",
             "section": "OSSU Core Ethics",
-            "completed": "false"
+            "completed": "false",
+            "owner": "corey-richardson"
         },
         {
             "name": "Introduction to Intellectual Property",
@@ -475,7 +527,8 @@
             "provider": "University of Pennsylvania",
             "length": "15 hours",
             "section": "OSSU Core Ethics",
-            "completed": "false"
+            "completed": "false",
+            "owner": "corey-richardson"
         },
         {
             "name": "Data Privacy Fundamentals",
@@ -484,7 +537,8 @@
             "provider": "Northeasten University",
             "length": "8 hours",
             "section": "OSSU Core Ethics",
-            "completed": "false"
+            "completed": "false",
+            "owner": "corey-richardson"
         },
         {
             "name": "Learn Machine Learning",
@@ -493,7 +547,8 @@
             "provider": "Codecademy",
             "length": "4 weeks",
             "section": "ML, Python",
-            "completed": "true"
+            "completed": "true",
+            "owner": "corey-richardson"
         },
         {
             "name": "Learn Git & GitHub",
@@ -502,7 +557,8 @@
             "provider": "Codecademy",
             "length": "15 hours",
             "section": "Git, Github, Source Control",
-            "completed": "true"
+            "completed": "true",
+            "owner": "corey-richardson"
         },
         {
             "name": "Learn the Command Line",
@@ -511,7 +567,8 @@
             "provider": "Codecademy",
             "length": "8 hours",
             "section": "CLI",
-            "completed": "true"
+            "completed": "true",
+            "owner": "corey-richardson"
         },
         {
             "name": "Visualize Data with Python (2022 Version) Skill Path",
@@ -520,7 +577,8 @@
             "provider": "Codecademy",
             "length": "6 weeks",
             "section": "Data Viz, Python",
-            "completed": "true"
+            "completed": "true",
+            "owner": "corey-richardson"
         },
         {
             "name": "MATLAB Fundamentals",
@@ -529,7 +587,8 @@
             "provider": "MathWorks",
             "length": "17 hours",
             "section": "MATLAB",
-            "completed": "true"
+            "completed": "true",
+            "owner": "corey-richardson"
         }
     ]
 }

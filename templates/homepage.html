@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="nav-container">
+    <nav>
+        <span>
+            <a href="/">All Courses</a>
+            <a href="/complete">View Finished Courses</a>
+            <a href="/uncomplete">View Unfinished Courses</a>
+            <a href="/alphabetical">View Courses by Name</a>
+            <a href="/by_provider">View Courses by Provider</a>
+        </span>
+    </nav>
+</div>
+
+{% for c in course_list %}
+    <div class="course-container">
+        <div class="container-text">
+            <h2><a href="{{c['url']}}" target="_blank">{{c["name"]}}</a> <aside>- {{c["provider"]}}</aside></h2>
+            <p>{{c["desc"]}}</p>
+            <p>
+                <aside>{{c["length"]}} - {{c["section"]}} -</aside>
+                {% if c["completed"] == "true" %}
+                    <span class="green dot"></span>
+                {% else %}
+                    <span class="red dot"></span>
+                {% endif %} 
+            </p>
+        </div>
+    </div>
+{% endfor %}
+
+{% endblock %}

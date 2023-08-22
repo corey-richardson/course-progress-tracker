@@ -8,7 +8,8 @@
         "link": "https://github.com/corey-richardson/course-progress-tracker/blob/main/README.md",
         "date": "21/08/2023",
         "time": "08:15",
-        "sort_time": "2023-08-21 08:15:00.603333"
+        "sort_time": "2023-08-21 08:15:00.603333",
+        "owner": "corey-richardson"
     },
     {
         "title": "Update to 'forms.py'",
@@ -19,7 +20,8 @@
         "link": "https://github.com/corey-richardson/course-progress-tracker/blob/main/forms.py",
         "date": "19/08/2023",
         "time": "20:58",
-        "sort_time": "2023-08-19 20:58:14.780802"
+        "sort_time": "2023-08-19 20:58:14.780802",
+        "owner": "corey-richardson"
     },
     {
         "title": "Wrote documentation for Course Progress Tracker Project",
@@ -30,7 +32,8 @@
         "link": "https://github.com/corey-richardson/course-progress-tracker/blob/main/README.md",
         "date": "19/08/2023",
         "time": "15:14",
-        "sort_time": "2023-08-19 15:14:17.336613"
+        "sort_time": "2023-08-19 15:14:17.336613",
+        "owner": "corey-richardson"
     },
     {
         "title": "Added 'Pytest' Unit Testing for FlaskForms",
@@ -41,7 +44,8 @@
         "link": "https://github.com/corey-richardson/course-progress-tracker/tree/main/tests",
         "date": "19/08/2023",
         "time": "12:55",
-        "sort_time": "2023-08-19 12:55:58.410621"
+        "sort_time": "2023-08-19 12:55:58.410621",
+        "owner": "corey-richardson"
     },
     {
         "title": "Added 'Learning Log' to Course Progress Track",
@@ -52,7 +56,8 @@
         "link": "https://github.com/corey-richardson/course-progress-tracker",
         "date": "18/08/2023",
         "time": "10:36",
-        "sort_time": "2023-08-18 10:36:49.734692"
+        "sort_time": "2023-08-18 10:36:49.734692",
+        "owner": "corey-richardson"
     },
     {
         "title": "Started 'Course Progress Tracker'",
@@ -63,7 +68,8 @@
         "link": "https://github.com/corey-richardson/course-progress-tracker",
         "date": "16/08/2023",
         "time": "08:00",
-        "sort_time": "2023-08-16 08:00:00.000000"
+        "sort_time": "2023-08-16 08:00:00.000000",
+        "owner": "corey-richardson"
     },
     {
         "title": "Added installation guide to README documentation",
@@ -73,6 +79,7 @@
         "link": "https://github.com/corey-richardson/course-progress-tracker/blob/main/README.md#software-installation-guide",
         "date": "21/08/2023",
         "time": "13:16",
-        "sort_time": "2023-08-21 13:16:46.194188"
+        "sort_time": "2023-08-21 13:16:46.194188",
+        "owner": "corey-richardson"
     }
 ]

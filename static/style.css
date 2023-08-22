@@ -32,10 +32,24 @@
     border: solid var(--accent);
     border-radius: 5px;
     margin: 5px 0;
+    display: flex;
+    justify-content: space-between;
 }
   
 .container-text {
     margin: 0 20px;
+    flex: 1;
+}
+
+.user-section {
+    display: flex;
+    align-items: bottom;
+    margin: 5px 5px;
+    background-color: var(--primary);
+    border: solid var(--accent);
+    border-radius: 5px;
+    padding: 0 5px;
+    height: fit-content;
 }
 
 .nav-container a {

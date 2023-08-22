@@ -6,7 +6,8 @@
             "code": "BPIE111",
             "year": "First",
             "optional": "false",
-            "completed": "false"
+            "completed": "false",
+            "owner": "corey-richardson"
         },
         {
             "name": "Software Engineering 1",
@@ -14,7 +15,8 @@
             "code": "COMP1000",
             "year": "First",
             "optional": "false",
-            "completed": "false"
+            "completed": "false",
+            "owner": "corey-richardson"
         },
         {
             "name": "Computer Systems",
@@ -22,7 +24,8 @@
             "code": "COMP1001",
             "year": "First",
             "optional": "false",
-            "completed": "false"
+            "completed": "false",
+            "owner": "corey-richardson"
         },
         {
             "name": "Cyber Security & Networks",
@@ -30,7 +33,8 @@
             "code": "COMP1002",
             "year": "First",
             "optional": "false",
-            "completed": "false"
+            "completed": "false",
+            "owner": "corey-richardson"
         },
         {
             "name": "Algorithms, Data Structures and Mathematics",
@@ -38,7 +42,8 @@
             "code": "COMP1003",
             "year": "First",
             "optional": "false",
-            "completed": "false"
+            "completed": "false",
+            "owner": "corey-richardson"
         },
         {
             "name": "Computing Practice",
@@ -46,7 +51,8 @@
             "code": "COMP1004",
             "year": "First",
             "optional": "false",
-            "completed": "false"
+            "completed": "false",
+            "owner": "corey-richardson"
         },
         {
             "name": "Stage 2 Computing Placement Preparation",
@@ -54,7 +60,8 @@
             "code": "BPIE211",
             "year": "Second",
             "optional": "false",
-            "completed": "false"
+            "completed": "false",
+            "owner": "corey-richardson"
         },
         {
             "name": "Software Engineering 2",
@@ -62,7 +69,8 @@
             "code": "COMP2000",
             "year": "Second",
             "optional": "false",
-            "completed": "false"
+            "completed": "false",
+            "owner": "corey-richardson"
         },
         {
             "name": "Information Management & Retrieval",
@@ -70,7 +78,8 @@
             "code": "COMP2001",
             "year": "Second",
             "optional": "false",
-            "completed": "false"
+            "completed": "false",
+            "owner": "corey-richardson"
         },
         {
             "name": "Artificial Intelligence",
@@ -78,7 +87,8 @@
             "code": "COMP2002",
             "year": "Second",
             "optional": "false",
-            "completed": "false"
+            "completed": "false",
+            "owner": "corey-richardson"
         },
         {
             "name": "Computing Group Project",
@@ -86,7 +96,8 @@
             "code": "COMP2003",
             "year": "Second",
             "optional": "false",
-            "completed": "false"
+            "completed": "false",
+            "owner": "corey-richardson"
         },
         {
             "name": "Software Development Tools and Practices",
@@ -94,7 +105,8 @@
             "code": "COMP2005",
             "year": "Second",
             "optional": "false",
-            "completed": "false"
+            "completed": "false",
+            "owner": "corey-richardson"
         },
         {
             "name": "Computing Related Placement",
@@ -102,7 +114,8 @@
             "code": "BPIE330",
             "year": "Placement",
             "optional": "true",
-            "completed": "false"
+            "completed": "false",
+            "owner": "corey-richardson"
         },
         {
             "name": "Computing Project",
@@ -110,7 +123,8 @@
             "code": "COMP3000",
             "year": "Final",
             "optional": "false",
-            "completed": "false"
+            "completed": "false",
+            "owner": "corey-richardson"
         },
         {
             "name": "Full-Stack Development",
@@ -118,7 +132,8 @@
             "code": "COMP3006",
             "year": "Final",
             "optional": "false",
-            "completed": "false"
+            "completed": "false",
+            "owner": "corey-richardson"
         },
         {
             "name": "HCI, Usability and Visualization",
@@ -126,7 +141,8 @@
             "code": "COMP3007",
             "year": "Final",
             "optional": "false",
-            "completed": "false"
+            "completed": "false",
+            "owner": "corey-richardson"
         },
         {
             "name": "Big Data Analytics",
@@ -134,7 +150,8 @@
             "code": "COMP3008",
             "year": "Final",
             "optional": "true",
-            "completed": "false"
+            "completed": "false",
+            "owner": "corey-richardson"
         },
         {
             "name": "Games Graphics Pipelines",
@@ -142,7 +159,8 @@
             "code": "COMP3015",
             "year": "Final",
             "optional": "true",
-            "completed": "false"
+            "completed": "false",
+            "owner": "corey-richardson"
         },
         {
             "name": "Immersive Game Technologies",
@@ -150,7 +168,8 @@
             "code": "COMP3016",
             "year": "Final",
             "optional": "true",
-            "completed": "false"
+            "completed": "false",
+            "owner": "corey-richardson"
         },
         {
             "name": "Computing Project Management",
@@ -158,7 +177,8 @@
             "code": "COMP3017",
             "year": "Final",
             "optional": "true",
-            "completed": "false"
+            "completed": "false",
+            "owner": "corey-richardson"
         }
     ]
 }

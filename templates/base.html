@@ -10,15 +10,32 @@
                 <div class="container-text">
                     <h1>Course Progress Tracker <aside>- A Flask Web Application</aside></h1>
                 </div>
+                {% if current_user.is_authenticated %}
+                    <div class="user-section">
+                        <span>
+                            <h5 style="display: inline;">{{ current_user.id }} |</h5>
+                            <a href="/logout"><h5 style="display: inline;">Sign out?</h5></a>
+                        </span>
+                    </div>
+                {% else %}
+                    <div class="user-section">
+                        <span>
+                            <h5 style="display: inline;"><a href="/">Login</a> or </h5>
+                            <h5 style="display: inline;"><a href="/register">Register New User</a></h5>
+                        </span>
+                    </div>
+                {% endif %}
             </div>
-            <div class="nav-container">
-                <span>
-                    <a href="/">View Courses</a>
-                    <a href="/uni_modules">View University Modules</a>
-                    <a href="/learning_log">Learning Log</a>
-                    <a href="/add">Add or Modify a Course</a>
-                </span>
-            </div>
+            {% if current_user.is_authenticated %}
+                <div class="nav-container">
+                    <span>
+                        <a href="/homepage">View Courses</a>
+                        <a href="/uni_modules">View University Modules</a>
+                        <a href="/learning_log">Learning Log</a>
+                        <a href="/add">Add or Modify a Course</a>
+                    </span>
+                </div>
+            {% endif %}
         </nav>
         
         <div id="main">
