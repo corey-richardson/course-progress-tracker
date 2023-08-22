@@ -1,25 +1,49 @@
 {% extends "base.html" %}
 {% block content %}
 
-<div class="course-container">
-    <div class="container-text">
-        <h3>Create a New Post</h3>
-        <form method="post">
-            <table style="width: 100%; margin: 10px 0;">
-                {{ add_to_log.hidden_tag() }}
-                {% for field in add_to_log %}
-                    {% if field.type != "CSRFTokenField" %}
-                    <tr>
-                        <td style="width: 30%;">{{field.label.text}}</td>
-                        <td style="width: 70%;">{{field(autocomplete="off")}}</td>
-                    </tr>
-                    {% endif %}
-                {% endfor %}
-            </table>
-        </form>
-        <p><aside>Title, Project or Course Name, Topics Covered and Post Contents are required fields. Link Title and Link URL are optional but mutually inclusive.</aside></p>
-    </div>
+<div class="nav-container">
+    <nav>
+        <span>
+            <a href="/learning_log/my">My Posts</a>
+            <a href="/learning_log/everyone">All User Posts</a>
+            <a href="/learning_log/search">Search for a User</a>
+
+        </span>
+    </nav>
 </div>
+
+{% if visibility == "search" %}
+    <div class="course-container">
+        <div class="container-text">
+            <form method="post">
+                {{ search_user.hidden_tag() }}
+                <p>Search for user: {{search_user.user_to_search()}} {{search_user.submit()}}</p>
+            </form>
+        </div>
+    </div>
+{% endif %}
+
+{% if visibility == "my" %}
+    <div class="course-container">
+        <div class="container-text">
+            <h3>Create a New Post</h3>
+            <form method="post">
+                <table style="width: 100%; margin: 10px 0;">
+                    {{ add_to_log.hidden_tag() }}
+                    {% for field in add_to_log %}
+                        {% if field.type != "CSRFTokenField" %}
+                        <tr>
+                            <td style="width: 30%;">{{field.label.text}}</td>
+                            <td style="width: 70%;">{{field(autocomplete="off")}}</td>
+                        </tr>
+                        {% endif %}
+                    {% endfor %}
+                </table>
+            </form>
+            <p><aside>Title, Project or Course Name, Topics Covered and Post Contents are required fields. Link Title and Link URL are optional but mutually inclusive.</aside></p>
+        </div>
+    </div>
+{% endif %}
 
 <div class="course-container">
     <div class="container-text">
@@ -33,7 +57,7 @@
 {% for post in posts %}
     <div class="course-container">
         <div class="container-text">
-            <h2 style="margin-bottom: 0;">{{post["title"]}} <aside> - {{post["date"]}} at {{post["time"]}} by {{current_user.id}}</aside></h2>
+            <h2 style="margin-bottom: 0;">{{post["title"]}} <aside> - {{post["date"]}} at {{post["time"]}} by {{post["owner"]}}</aside></h2>
             <h4 style="margin: 0 0;">{{post["project"]}} <aside> - {{post["topics"]}}</aside></h4>
             <p>{{post["body"]}}</p>
             {% if post["link"] %}

@@ -1,5 +1,17 @@
 [
     {
+        "title": "Added new and modified existing unit tests",
+        "project": "Course Progress Tracker",
+        "topics": "Flask, Flask-Login, Python, Pytest",
+        "body": "Created unit tests to test registration form, login form and protected routes. Updated existing unit tests to work with the authentication system (forms required user to be logged in).",
+        "link_title": "GitHub Issue Page",
+        "link": "https://github.com/corey-richardson/course-progress-tracker/issues/1",
+        "date": "22/08/2023",
+        "time": "12:28",
+        "sort_time": "2023-08-22 12:28:00.947729",
+        "owner": "corey-richardson"
+    },
+    {
         "title": "Added User Authentication/Login system",
         "project": "Course Progress Tracker",
         "topics": "Flask, Flask-Login, Python, JSON",
@@ -93,18 +105,6 @@
         "date": "16/08/2023",
         "time": "08:00",
         "sort_time": "2023-08-16 08:00:00.000000",
-        "owner": "corey-richardson"
-    },
-    {
-        "title": "Added new and modified existing unit tests",
-        "project": "Course Progress Tracker",
-        "topics": "Flask, Flask-Login, Python, Pytest",
-        "body": "Created unit tests to test registration form, login form and protected routes. Updated existing unit tests to work with the authentication system (forms required user to be logged in).",
-        "link_title": "GitHub Issue Page",
-        "link": "https://github.com/corey-richardson/course-progress-tracker/issues/1",
-        "date": "22/08/2023",
-        "time": "12:28",
-        "sort_time": "2023-08-22 12:28:00.947729",
         "owner": "corey-richardson"
     }
 ]

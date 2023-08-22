@@ -173,3 +173,7 @@ class DateRange(FlaskForm):
         default = datetime.now())
     
     submit = SubmitField()
+
+class SearchUser(FlaskForm):
+    user_to_search = StringField()
+    submit = SubmitField()

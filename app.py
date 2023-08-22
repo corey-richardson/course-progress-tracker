@@ -8,7 +8,8 @@ from forms import (
     ModuleCompleted, 
     AddCourse, 
     AddToLog, 
-    DateRange)
+    DateRange,
+    SearchUser)
 from authenticate import (
     LoginForm, 
     RegistrationForm)
@@ -291,18 +292,33 @@ def add():
         current_user = current_user
     )
 
-@app.route('/learning_log', methods=["GET","POST"])
+@app.route('/learning_log', methods=["GET","POST"], defaults={'visibility':'my'})
+@app.route('/learning_log/<visibility>', methods=["GET","POST"])
 @login_required
-def view_log():
+def view_log(visibility):
     
-    # Initialise form
+    # Initialise forms
     add_to_log = AddToLog()
     date_range = DateRange()
+    search_user = SearchUser()
     
     with open(POSTS_FILE_PATH, "r") as j:
             posts = json.load(j)
-            
-    posts = get_all(posts, "owner", current_user.id)
+
+    match visibility:
+        case "my":       
+            posts = get_all(posts, "owner", current_user.id)
+        case "search":
+            if search_user.validate_on_submit():
+                user_to_search = search_user.user_to_search.data
+                posts = get_all(posts, "owner", user_to_search)
+        case _:
+            with open('static/accounts.json', 'r') as file:
+                users = json.load(file)["account list"]
+                for user in users:
+                    if user['username'] == visibility:
+                        posts = get_all(posts, "owner", visibility)
+            # else view everyones posts
     
     # Sort posts by datetime        
     posts.sort(key = lambda p: p["sort_time"], reverse=True)
@@ -363,7 +379,10 @@ def view_log():
         posts = posts,
         add_to_log = add_to_log,
         date_range = date_range,
-        current_user = current_user
+        current_user = current_user,
+        visibility = visibility,
+        search_user = search_user,
+        
     )
     
 @app.route("/logout")
