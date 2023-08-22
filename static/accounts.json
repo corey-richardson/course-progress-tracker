@@ -1,6 +1,9 @@
 {
     "account list": [
         {
+            "username": "TEST_ACCOUNT_DONT_DELETE"
+        },
+        {
             "username": "corey-richardson",
             "password": "pbkdf2:sha256:600000$jaLvDVD3wUAmJw3x$f8ad1f48baae815523ca9868a349619fa3706dca2b30bf52d342a824568fc379"
         }

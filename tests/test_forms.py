@@ -13,8 +13,6 @@ from forms import (
     CourseCompleted, 
     DateRange, 
     ModuleCompleted,
-    RegistrationForm,
-    LoginForm,
 )
 
 import re
@@ -422,4 +420,3 @@ def test_ModuleCompleted_missing_required_field():
             )
             assert not form.validate()
             assert 'completed_module' in form.errors
-        

@@ -9,7 +9,7 @@ from forms import (
     AddCourse, 
     AddToLog, 
     DateRange)
-from forms import LoginForm, RegistrationForm
+from authenticate import LoginForm, RegistrationForm
 
 from datetime import datetime
 import json
@@ -369,3 +369,8 @@ def view_log():
 def logout():
     logout_user()
     return redirect(url_for('index'))
+
+@login_manager.unauthorized_handler
+def unauthorized():
+  # do stuff
+  return "Sorry you must be logged in to view this page<br> Return to <a href='/'>Home</a>"
