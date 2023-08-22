@@ -9,7 +9,9 @@ from forms import (
     AddCourse, 
     AddToLog, 
     DateRange)
-from authenticate import LoginForm, RegistrationForm
+from authenticate import (
+    LoginForm, 
+    RegistrationForm)
 
 from datetime import datetime
 import json

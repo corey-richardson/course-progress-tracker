@@ -1,4 +1,5 @@
 from flask_wtf import FlaskForm
+from flask_login import current_user
 from wtforms import (
     StringField, 
     TextAreaField, 
@@ -56,7 +57,9 @@ class CourseCompleted(FlaskForm):
     def update_course_choices(self):
         with open(COURSE_FILE_PATH, "r") as j:
             courses = json.load(j)["course list"]   
-        choices_list = [course["name"] for course in courses]
+        choices_list = [course["name"] for course in courses if course["owner"] == current_user.id]
+        if not choices_list:
+            choices_list.append(('placeholder', 'No courses found'))
         self.completed_course.choices = sorted(choices_list)
         
     status = SelectField(
@@ -72,10 +75,19 @@ class CourseCompleted(FlaskForm):
     submit = SubmitField()
     
 class ModuleCompleted(FlaskForm):
-    with open(MODULE_FILE_PATH, "r") as j:
-        modules = json.load(j)["module list"]    
-    choices_list = [module["name"] for module in modules]
     
+    def __init__(self, *args, **kwargs):
+        super(ModuleCompleted, self).__init__(*args, **kwargs)
+        self.update_module_choices() 
+        
+    def update_module_choices(self):    
+        with open(MODULE_FILE_PATH, "r") as j:
+            modules = json.load(j)["module list"]    
+        choices_list = [module["name"] for module in modules if module["owner"] == current_user.id]
+        if not choices_list:
+            choices_list.append(('placeholder', 'No modules found'))
+        self.completed_module.choices = sorted(choices_list)
+        
     status = SelectField(
         "Status: ",
         choices=[
@@ -84,8 +96,8 @@ class ModuleCompleted(FlaskForm):
         validators=[DataRequired()])
     completed_module = SelectField(
         "Mark Course as Completed:", 
-        choices=choices_list,
-        validators=[DataRequired()])
+        validators=[DataRequired()],
+        )
     
     submit = SubmitField()
 
@@ -143,7 +155,8 @@ class AddToLog(FlaskForm):
 class DateRange(FlaskForm):
     # Only runs once when flask app is first enabled
     with open(POSTS_FILE_PATH, "r") as j:
-            posts = json.load(j)
+        posts = json.load(j)
+    
     earliest_datetime = min(
         posts, 
         key=lambda x: datetime.strptime(
