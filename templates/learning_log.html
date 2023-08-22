@@ -33,7 +33,7 @@
 {% for post in posts %}
     <div class="course-container">
         <div class="container-text">
-            <h2 style="margin-bottom: 0;">{{post["title"]}} <aside> - {{post["date"]}} at {{post["time"]}}</aside></h2>
+            <h2 style="margin-bottom: 0;">{{post["title"]}} <aside> - {{post["date"]}} at {{post["time"]}} by {{current_user.id}}</aside></h2>
             <h4 style="margin: 0 0;">{{post["project"]}} <aside> - {{post["topics"]}}</aside></h4>
             <p>{{post["body"]}}</p>
             {% if post["link"] %}
