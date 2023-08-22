@@ -1,5 +1,5 @@
 # course-progress-tracker
-A Flask web application that can be used to track which courses and university modules I have completed and which I have yet to finish. It also features a 'learning log' where I can use a FlaskForm to create blog posts in order to record my progress.
+A Flask web application that can be used to track which courses and university modules I have completed and which I have yet to finish. It also features a 'learning log' where I can use a FlaskForm to create blog posts in order to record my progress. It includes user authentication for individual account tracking.
 
 ---
 
@@ -8,13 +8,15 @@ A Flask web application that can be used to track which courses and university m
 - [Software Installation Guide](#software-installation-guide)
 - [Software Description](#software-description)
     - [pages](#pages)
-        - [index-page](#index-page)
+        - [login-page](#login-page)
+        - [registration-page](#registration-page)
+        - [homepage](#homepage)
         - [view-university-modules](#view-university-modules)
         - [learning-log](#learning-log)
         - [add-or-modify-a-course](#add-or-modify-a-course)
     - [html-and-css](#html-and-css)
         - [base-template](#base-template)
-        - [style.css](#stylecss)
+        - [stylecss](#stylecss)
     - [pytest-unit-testing](#pytest-unit-testing)
     - [file-structure](#file-structure)
 
@@ -64,12 +66,12 @@ source venv/bin/activate
 
 4. Install required packages using pip:
 ```bash
-pip install Flask Flask-WTF pytest
+pip install Flask Flask-WTF pytest pytest-flask
 ```
 
 5. Run the `pytest` command below.
 ```bash
-pytest -v --no-header tests/test_forms.py | tee tests/results.txt
+pytest -v --no-header | tee tests/results.txt
 ```
 > The `pytest` tests will run, and you will see the test output in the terminal as well as in the `results.txt` file in the `test/` directory.
 
@@ -101,17 +103,43 @@ You've successfully installed and run the "Course Progress Tracker" project on y
 
 ## Pages
 
-### Index Page
+### Login Page
 
-The index page is the default homepage of this Flask web application. It reads and displays each course and information related to the course from `static/courses.json`.
+The Login page is the default index page and can be found at `127.0.0.1:5000/` (or equivalent). This page features the 'LoginForm', the output of which is compared against the account stored in `static/accounts.json`. If successful, the user is logged in.
 
-![](/res/index.jpg)
+![](/res/login.JPG)
 
-The index page takes an optional URL parameter `status`.
+### Registration Page
+
+The Register page can be found at `127.0.0.1:5000/register`(or equivalent). It features the `RegistrationForm`, the output of which is written to `static/accounts.json` if the form successfully validates.
+
+The requirements for validation include:
+- Username required
+- Password required
+- Repeat Password required
+- Username must not contain spaces
+- Username must be unique
+- Password and Repeat Password must match
+- Password must not contain spaces
+- Password must be a minimum of 8 characters
+- Password must contain a lowercase character
+- Password must contain an uppercase character
+- Password must contain a punctuation character
+
+![](/res/register.JPG)
+
+### Homepage
+
+Once the user successfully logs in or registers, they are redirected to the homepage. This is found at `127.0.0.1:5000/homepage`(or equivalent).
+
+This page displays each course and related information that the user has added via the '/add' route. 
+
+The homepage is login-protected and takes an optional URL parameter `status`.
 ```py
 @app.route('/', methods=["GET","POST"], defaults={'status' : "all"})    
 @app.route('/<status>', methods=["GET","POST"])
-def index(status):
+@login_required
+def homepage(status):
     ...
 ```
 
@@ -134,7 +162,7 @@ match status:
         pass
 ```
 
-![](/res/flow_diagrams/Index.svg)
+![](/res/homepage.JPG)
 
 Parameter | Summary | Result
 --- | --- | ---
@@ -143,20 +171,18 @@ Parameter | Summary | Result
 `"complete"` | Displays the subset of the courses which have been marked as completed. | ![](/res/complete.jpg)
 `"uncomplete"` | Displays the subset of the courses which have been marked as not completed.  | ![](/res/uncomplete.jpg)
 
-- [`app.py::index`](https://github.com/corey-richardson/course-progress-tracker/blob/ce296945d6023d4de590ccac313a6e83b65a193c/app.py#L38C3-L38C3)
 - [`templates/index.html`](https://github.com/corey-richardson/course-progress-tracker/blob/main/templates/index.html)
 - [`static/courses.json`](https://github.com/corey-richardson/course-progress-tracker/blob/main/static/courses.json)
 
 ### View University Modules
 
-The View University Modules page can be found at `127.0.0.1:5000/uni_modules` (or equivalent). It reads and displays each course and information related to the course from `static/modules.json`.
+The View University Modules page can be found at `127.0.0.1:5000/uni_modules` (or equivalent). It reads and displays each course and information related to the course from `static/modules.json` linked to the current user.
 
-![](/res/uni_modules.jpg)
-
-The View University Modules page takes an optional URL parameter `year`.
+The View University Modules page is login-protected and takes an optional URL parameter `year`.
 ```py
 @app.route('/uni_modules', methods=["GET","POST"], defaults={"year" : "all"})
 @app.route('/uni_modules/<year>', methods=["GET","POST"])
+@login_required
 def uni_modules(year):
     ...
 ```
@@ -189,20 +215,51 @@ Parameter | Summary | Result
 `"placement`" | Displays the subset of the modules from the optional placement year of the course. | ![](/res/uni_modules_placement.jpg)
 `"final"` | Displays the subset of the modules from the final year of study. | ![](/res/uni_modules_final.jpg)
 
-- [`app.py::uni_modules`](https://github.com/corey-richardson/course-progress-tracker/blob/ce296945d6023d4de590ccac313a6e83b65a193c/app.py#L76)
 - [`templates/uni_modules.html`](https://github.com/corey-richardson/course-progress-tracker/blob/main/templates/uni_modules.html)
 - [`static/modules.json`](https://github.com/corey-richardson/course-progress-tracker/blob/main/static/modules.json)
 
 ### Learning Log
 
-The View University Modules page can be found at `127.0.0.1:5000/learning_log` (or equivalent). It featues a 'Create a New Post' form and reads and displays the posts from `static/posts.json`, reverse ordered by datetime of posting (newest to oldest).
+The Learning Log page can be found at `127.0.0.1:5000/learning_log` (or equivalent).
+
+The Learning Log Modules page is login-protected and takes an optional URL parameter `visibility`.
+
+```py
+@app.route('/learning_log', methods=["GET","POST"], defaults={'visibility':'my'})
+@app.route('/learning_log/<visibility>', methods=["GET","POST"])
+@login_required
+def view_log(visibility):
+    ...
+```
+
+This variable controls which posts get displayed.
+- `my` - only view posts linked to the `current_user`. This page also contains the `AddToLog` form where the user can create new posts.
+- `search` - Features the `SearchUser` form allowing the user to view posts from a specific user.
+- `all` or `_` (default) - view all posts, irrespective of poster.
+```py
+with open(POSTS_FILE_PATH, "r") as j:
+        posts = json.load(j)
+
+match visibility:
+    case "my":       
+        posts = get_all(posts, "owner", current_user.id)
+    case "search":
+        if search_user.validate_on_submit():
+            user_to_search = search_user.user_to_search.data
+            posts = get_all(posts, "owner", user_to_search)
+    case _:
+        with open('static/accounts.json', 'r') as file:
+            users = json.load(file)["account list"]
+            for user in users:
+                if user['username'] == visibility:
+                    posts = get_all(posts, "owner", visibility)
+        # else view everyones posts
+```
 
 ![](/res/learning_log.jpg)
 
 ![](/res/flow_diagrams/Learning_Log.svg)
 
-- [`app.py::view_log`](https://github.com/corey-richardson/course-progress-tracker/blob/ce296945d6023d4de590ccac313a6e83b65a193c/app.py#L198)
-- [`forms.py::AddToLog`](https://github.com/corey-richardson/course-progress-tracker/blob/ce296945d6023d4de590ccac313a6e83b65a193c/forms.py#L56)
 - [`templates/learning_log.html`](https://github.com/corey-richardson/course-progress-tracker/blob/main/templates/learning_log.html)
 - [`static/posts.json`](https://github.com/corey-richardson/course-progress-tracker/blob/main/static/posts.json)
 
@@ -223,14 +280,6 @@ Modify University Modules - `ModuleCompleted`
 
 ![](/res/flow_diagrams/Add.svg)
 
-- [`app.py::add`](https://github.com/corey-richardson/course-progress-tracker/blob/ce296945d6023d4de590ccac313a6e83b65a193c/app.py#L111)
-- [`forms.py::AddCourse`](https://github.com/corey-richardson/course-progress-tracker/blob/ce296945d6023d4de590ccac313a6e83b65a193c/forms.py#L9)
-- [`forms.py::CourseCompleted`](https://github.com/corey-richardson/course-progress-tracker/blob/ce296945d6023d4de590ccac313a6e83b65a193c/forms.py#L22)
-- [`forms.py::ModuleCompleted`](https://github.com/corey-richardson/course-progress-tracker/blob/ce296945d6023d4de590ccac313a6e83b65a193c/forms.py#L42C4-L42C4)
-- [`templates/add.html`](https://github.com/corey-richardson/course-progress-tracker/blob/main/templates/add.html)
-- [`static/courses.json`](https://github.com/corey-richardson/course-progress-tracker/blob/main/static/courses.json)
-- [`static/uni_modules.json`](https://github.com/corey-richardson/course-progress-tracker/blob/main/static/uni_modules.json)
-
 ---
 
 ## HTML and CSS
@@ -240,8 +289,10 @@ The HTML structure files can be found in the [`templates`](/templates/) director
 [`templates/`](/templates/)
 - [`add.html`](/templates/add.html)
 - [`base.html`](/templates/base.html)
+- [`homepage.html`](/templates/homepage.html)
 - [`index.html`](/templates/index.html)
 - [`learning_log.html`](/templates/learning_log.html)
+- [`register.html`](/templates/register.html)
 - [`uni_modules.html`](/templates/uni_modules.html)
 
 [`static/`](/static/)
@@ -325,11 +376,19 @@ Pytest is used to test the FlaskForm objects employed in the web application. Co
 - valid form input
 - invalid form input
 - missing required field
+- username is valid
+- password is valid
+- protected routes can't be accessed
 
 ```py
 # Example of a test in 'test_forms.py'
 def test_AddCourse_empty():
+    '''
+    Test an empty AddCourse form
+    Expect the form to fail validation
+    '''
     with app.test_request_context("/add"):
+        login_user(User('TEST_ACCOUNT_DONT_DELETE'))
         form = AddCourse()
         assert not form.validate()
         assert form.errors
@@ -337,21 +396,24 @@ def test_AddCourse_empty():
 
 To run the unit testing:
 
-1. Check that *"Learn Python 3"* is present as a course name in [`courses.json`](/static/courses.json).
-2. Check that *"Learn Skydiving for Beginners"* is **NOT** present as a course name in [`courses.json`](/static/courses.json).
-3. Check that *""Software Engineering 1"* is present as a module name in [`modules.json`](/static/modules.json).
-4. Check that *"Learn Skydiving for Beginners"* is **NOT** present as a module name in [`modules.json`](/static/modules.json).
+1. Check that *"Test Course"* is present as a course name in [`courses.json`](/static/courses.json), linked to `'TEST_ACCOUNT_DONT_DELETE`.
+2. Check that *"Learn Skydiving for Beginners"* is **NOT** present as a course name in [`courses.json`](/static/courses.json), linked to `'TEST_ACCOUNT_DONT_DELETE`.
+3. Check that *"Test Module"* is present as a module name in [`modules.json`](/static/modules.json), linked to `'TEST_ACCOUNT_DONT_DELETE`.
+4. Check that *"Learn Skydiving for Beginners"* is **NOT** present as a module name in [`modules.json`](/static/modules.json), linked to `'TEST_ACCOUNT_DONT_DELETE`.
 5. Either run the bash script [`run_tests.sh`](/tests/run_tests.sh) OR in the terminal type:
 ```
 source bin/activate
-pytest -v --no-header tests/test_forms.py | tee tests/results.txt
+pytest -v --no-header | tee tests/results.txt
 deactivate
 ```
 6. Navigate to [`tests/results.txt`](/tests/results.txt) and ensure all tests pass.
 
 - [`tests/test_forms.py`](/tests/test_forms.py)
+- [`tests/test_authentication.py`](/tests/test_authentication.py)
 - [`tests/run_tests.sh`](/tests/run_tests.sh)
 - [`tests/results.txt`](/tests/results.txt)
+
+> In this version of the software, there are 33 tests.
 
 ---
 
@@ -360,6 +422,7 @@ deactivate
 The layout of the project should look as follows *(venv/documentation files omitted)*:
 ```
 static/
+    accounts.json
     courses.json
     modules.json
     posts.json
@@ -367,13 +430,17 @@ static/
 templates/
     add.html
     base.html
+    homepage.html
     index.html
     learning_log.html
+    register.html
     uni_modules.html
 tests/
     results.txt
     run_tests.sh
     test_forms.py
+    test_authentication.py
 app.py
+authenticate.py
 forms.py
 ```

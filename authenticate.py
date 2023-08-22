@@ -41,7 +41,6 @@ class RegistrationForm(FlaskForm):
                 raise ValidationError('This username is already taken. Please choose a different one.')
 
     def strength_test_password(self, password):
-        flag = False
         password = password.data
         if " " in password:
             self.username.errors.append("No spaces!")

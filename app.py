@@ -114,8 +114,11 @@ def register():
             json.dump(accounts, acc, indent = 4)
             
         register.update()
-            
-        return redirect(url_for("index"))
+        
+        user = User(username)
+        login_user(user)
+                        
+        return redirect(url_for("homepage"))
 
     return render_template(
         'register.html', 
