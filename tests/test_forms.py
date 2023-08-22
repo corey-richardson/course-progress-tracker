@@ -34,7 +34,7 @@ def test_AddCourse_empty():
     Expect the form to fail validation
     '''
     with app.test_request_context("/add"):
-        login_user(User('test_user'))
+        login_user(User('TEST_ACCOUNT_DONT_DELETE'))
         form = AddCourse()
         assert not form.validate()
         assert form.errors
@@ -46,7 +46,7 @@ def test_AddCourse_valid():
     '''
     with app.test_request_context('/add'):
         with app.test_client() as client:
-            login_user(User('test_user'))
+            login_user(User('TEST_ACCOUNT_DONT_DELETE'))
             response = client.get('/add')
             csrf_token = extract_csrf_token(response.data.decode("utf-8"))
 
@@ -71,7 +71,7 @@ def test_AddCourse_invalid():
     '''
     with app.test_request_context('/add'):
         with app.test_client() as client:      
-            login_user(User('test_user'))
+            login_user(User('TEST_ACCOUNT_DONT_DELETE'))
             response = client.get('/add')
             csrf_token = extract_csrf_token(response.data.decode("utf-8"))
 
@@ -98,7 +98,7 @@ def test_AddToLog_empty():
     Expect the form to fail validation
     '''
     with app.test_request_context("/learning_log"):
-        login_user(User('test_user'))
+        login_user(User('TEST_ACCOUNT_DONT_DELETE'))
         form = AddToLog()
         assert not form.validate()
         assert form.errors
@@ -110,7 +110,7 @@ def test_AddToLog_valid():
     '''
     with app.test_request_context('/learning_log'):
         with app.test_client() as client:
-            login_user(User('test_user'))
+            login_user(User('TEST_ACCOUNT_DONT_DELETE'))
             response = client.get('/learning_log')
             csrf_token = extract_csrf_token(response.data.decode("utf-8"))       
                         
@@ -133,7 +133,7 @@ def test_AddToLog_missing_required_field():
     '''
     with app.test_request_context('/learning_log'):
         with app.test_client() as client:
-            login_user(User('test_user'))
+            login_user(User('TEST_ACCOUNT_DONT_DELETE'))
             response = client.get('/learning_log')
             csrf_token = extract_csrf_token(response.data.decode("utf-8"))
                 
@@ -154,7 +154,7 @@ def test_AddToLog_valid_missing_optional_fields():
     '''
     with app.test_request_context('/learning_log'):
         with app.test_client() as client:
-            login_user(User('test_user'))
+            login_user(User('TEST_ACCOUNT_DONT_DELETE'))
             response = client.get('/learning_log')
             csrf_token = extract_csrf_token(response.data.decode("utf-8"))       
                         
@@ -178,7 +178,7 @@ def test_AddToLog_only_link():
     '''
     with app.test_request_context('/learning_log'):
         with app.test_client() as client:
-            login_user(User('test_user'))
+            login_user(User('TEST_ACCOUNT_DONT_DELETE'))
             response = client.get('/learning_log')
             csrf_token = extract_csrf_token(response.data.decode("utf-8")) 
             form = AddToLog(
@@ -201,7 +201,7 @@ def test_AddToLog_only_link_title():
     '''
     with app.test_request_context('/learning_log'):
         with app.test_client() as client:
-            login_user(User('test_user'))
+            login_user(User('TEST_ACCOUNT_DONT_DELETE'))
             response = client.get('/learning_log')
             csrf_token = extract_csrf_token(response.data.decode("utf-8")) 
             form = AddToLog(
@@ -225,12 +225,12 @@ def test_CourseCompleted_empty():
     Expect the form to fail validation
     '''
     with app.test_request_context("/add"):
-        login_user(User('test_user'))
+        login_user(User('TEST_ACCOUNT_DONT_DELETE'))
         form = CourseCompleted()
         assert not form.validate()
         assert form.errors
 
-# ENSURE "Learn Python 3" IS IN THE COURSE LIST BEFORE TESTING           
+# ENSURE "Test Course" IS IN THE COURSE LIST BEFORE TESTING           
 def test_CourseCompleted_valid():
     '''
     Test a valid CourseCompleted form
@@ -238,13 +238,13 @@ def test_CourseCompleted_valid():
     '''
     with app.test_request_context('/add'):
         with app.test_client() as client:
-            login_user(User('test_user'))
+            login_user(User('TEST_ACCOUNT_DONT_DELETE'))
             response = client.get('/add')
             csrf_token = extract_csrf_token(response.data.decode("utf-8"))       
                         
             form = CourseCompleted(
                 status = "true",
-                completed_course = "Learn Python 3",
+                completed_course = "Test Course",
                 csrf_token = csrf_token
             )
             assert form.validate()
@@ -260,7 +260,7 @@ def test_CourseCompleted_invalid():
     '''
     with app.test_request_context('/add'):
         with app.test_client() as client:
-            login_user(User('test_user'))
+            login_user(User('TEST_ACCOUNT_DONT_DELETE'))
             response = client.get('/add')
             csrf_token = extract_csrf_token(response.data.decode("utf-8"))       
                         
@@ -280,7 +280,7 @@ def test_CourseCompleted_misssing_required_field():
     '''
     with app.test_request_context('/add'):
         with app.test_client() as client:
-            login_user(User('test_user'))
+            login_user(User('TEST_ACCOUNT_DONT_DELETE'))
             response = client.get('/add')
             csrf_token = extract_csrf_token(response.data.decode("utf-8")) 
             
@@ -302,7 +302,7 @@ def test_DateRange_empty():
     Expect the form to fail validation
     '''
     with app.test_request_context("/learning_log"):
-        login_user(User('test_user'))
+        login_user(User('TEST_ACCOUNT_DONT_DELETE'))
         form = DateRange()
         assert not form.validate()
         assert form.errors
@@ -314,7 +314,7 @@ def test_DateRange_valid():
     '''
     with app.test_request_context('/learning_log'):
         with app.test_client() as client:
-            login_user(User('test_user'))
+            login_user(User('TEST_ACCOUNT_DONT_DELETE'))
             response = client.get('/learning_log')
             csrf_token = extract_csrf_token(response.data.decode("utf-8"))       
                         
@@ -333,7 +333,7 @@ def test_DateRange_missing_required_field():
     '''
     with app.test_request_context('/learning_log'):
         with app.test_client() as client:
-            login_user(User('test_user'))
+            login_user(User('TEST_ACCOUNT_DONT_DELETE'))
             response = client.get('/learning_log')
             csrf_token = extract_csrf_token(response.data.decode("utf-8"))       
                         
@@ -355,12 +355,12 @@ def test_ModuleCompleted_empty():
     Expect the form to fail validation
     '''
     with app.test_request_context("/add"):
-        login_user(User('test_user'))
+        login_user(User('TEST_ACCOUNT_DONT_DELETE'))
         form = ModuleCompleted()
         assert not form.validate()
         assert form.errors
       
-# ENSURE "Software Engineering 1" IS IN THE MODULE LIST BEFORE TESTING           
+# ENSURE "Test Module" IS IN THE MODULE LIST BEFORE TESTING           
 def test_ModuleCompleted_valid():
     '''
     Test a valid ModuleCompleted form
@@ -368,13 +368,13 @@ def test_ModuleCompleted_valid():
     '''
     with app.test_request_context('/add'):
         with app.test_client() as client:
-            login_user(User('test_user'))
+            login_user(User('TEST_ACCOUNT_DONT_DELETE'))
             response = client.get('/add')
             csrf_token = extract_csrf_token(response.data.decode("utf-8"))       
                         
             form = ModuleCompleted(
                 status = "true",
-                completed_module = "Software Engineering 1",
+                completed_module = "Test Module",
                 csrf_token = csrf_token
             )
             assert form.validate()
@@ -390,7 +390,7 @@ def test_ModuleCompleted_invalid():
     '''
     with app.test_request_context('/add'):
         with app.test_client() as client:
-            login_user(User('test_user'))
+            login_user(User('TEST_ACCOUNT_DONT_DELETE'))
             response = client.get('/add')
             csrf_token = extract_csrf_token(response.data.decode("utf-8"))       
                         
@@ -409,7 +409,7 @@ def test_ModuleCompleted_missing_required_field():
     '''
     with app.test_request_context('/add'):
         with app.test_client() as client:
-            login_user(User('test_user'))
+            login_user(User('TEST_ACCOUNT_DONT_DELETE'))
             response = client.get('/add')
             csrf_token = extract_csrf_token(response.data.decode("utf-8"))
              

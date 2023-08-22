@@ -1,6 +1,16 @@
 {
     "course list": [
         {
+            "name": "Test Course",
+            "desc": "Entry used for unit testing purposes.",
+            "url": "https://docs.pytest.org/en/7.4.x",
+            "provider": "Pytest Academy",
+            "length": "1 Second",
+            "section": "Unit Testing",
+            "completed": "true",
+            "owner": "TEST_ACCOUNT_DONT_DELETE"
+        },
+        {
             "name": "Learn Python 3",
             "desc": "Learn the basics of Python 3, one of the most powerful, versatile, and in-demand programming languages today.",
             "url": "https://www.codecademy.com/learn/learn-python-3",

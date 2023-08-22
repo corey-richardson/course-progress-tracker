@@ -1,6 +1,16 @@
 {
     "module list": [
         {
+            "name": "Test Module",
+            "desc": "Entry used for unit testing purposes.",
+            "url": "https://docs.pytest.org/en/7.4.x",
+            "provider": "Pytest Academy",
+            "length": "1 Second",
+            "section": "Unit Testing",
+            "completed": "true",
+            "owner": "TEST_ACCOUNT_DONT_DELETE"
+        },
+        {
             "name": "Stage 1 Computing Placement Preparation",
             "desc": "This module is aimed at students who may be undertaking an industrial placement in the third year of their programme. It is designed to assist students in their search for a placement and in their preparation for the placement itself.",
             "code": "BPIE111",

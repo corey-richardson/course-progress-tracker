@@ -31,14 +31,21 @@ class RegistrationForm(FlaskForm):
                     EqualTo('password')])
     
     def validate_username(self, username):
+        username = username.data
+        if " " in username:
+            self.username.errors.append("Bad username: No spaces!")
+            raise ValidationError('Illegal character in username')
         for user in self.users:
-            if user['username'] == username.data:
+            if user['username'] == username:
                 self.username.errors.append("Username already taken")
                 raise ValidationError('This username is already taken. Please choose a different one.')
 
     def strength_test_password(self, password):
         flag = False
         password = password.data
+        if " " in password:
+            self.username.errors.append("No spaces!")
+            raise ValidationError('Bad password: No spaces!')
         if len(password) < 8:
             self.username.errors.append("Length")
             raise ValidationError("Bad password: Length!")
