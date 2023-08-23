@@ -106,5 +106,17 @@
         "time": "08:00",
         "sort_time": "2023-08-16 08:00:00.000000",
         "owner": "corey-richardson"
+    },
+    {
+        "title": "Updated flow diagrams ",
+        "project": "Course Progress Tracker",
+        "topics": "Software Design, Documentation",
+        "body": "Updated and create new flow diagrams to cover the authentication and accounts system implemented.",
+        "link_title": "Flow Diagrams Directory",
+        "link": "https://github.com/corey-richardson/course-progress-tracker/tree/main/res/flow_diagrams",
+        "date": "23/08/2023",
+        "time": "09:25",
+        "sort_time": "2023-08-23 09:25:42.495702",
+        "owner": "corey-richardson"
     }
 ]
