@@ -33,16 +33,40 @@ class RegistrationForm(FlaskForm):
                     EqualTo('password')])
     
     def validate_username(self, username):
+        '''
+        This function validates that the inputted username matches
+        requirements.
+        
+        The requirements include:
+        - The username must be alphanumeric
+        - The username must not include spaces
+        - The username must not include punctuation (except or underscores)
+        '''
         username = username.data
         if " " in username:
             self.username.errors.append("Bad username: No spaces!")
             raise ValidationError('Illegal character in username')
+        if not all(char.isalnum() or char in ['-', '_'] for char in username):
+            self.username.errors.append("Bad username: Only dashes, underscores, and alphanumeric characters are allowed.")
+            raise ValidationError("Illegal characters in username")
         for user in self.users:
             if user['username'] == username:
                 self.username.errors.append("Username already taken")
                 raise ValidationError('This username is already taken. Please choose a different one.')
 
     def strength_test_password(self, password):
+        '''
+        This function validates that the inputted password reaches strength 
+        requirements.
+        
+        The requirements include:
+        - Password must not contain spaces
+        - Password must be a minimum of 8 characters
+        - Password must contain a lowercase character
+        - Password must contain an uppercase character
+        - Password must contain a punctuation character
+        - Password must contain a number
+        '''
         password = password.data
         if " " in password:
             self.username.errors.append("No spaces!")

@@ -117,7 +117,9 @@ The requirements for validation include:
 - Username required
 - Password required
 - Repeat Password required
+- Username must be alphanumeric
 - Username must not contain spaces
+- Username must not contain punctuation (except or underscores)
 - Username must be unique
 - Password and Repeat Password must match
 - Password must not contain spaces
@@ -414,7 +416,7 @@ deactivate
 - [`tests/run_tests.sh`](/tests/run_tests.sh)
 - [`tests/results.txt`](/tests/results.txt)
 
-> In this version of the software, there are 33 tests.
+> In this version of the software, there are 36 tests.
 
 ---
 

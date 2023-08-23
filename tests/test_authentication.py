@@ -90,6 +90,36 @@ def test_Registration_space_in_username():
             assert not form.validate()
             assert form.errors
 
+def test_Registration_punc_in_username():
+    with app.test_request_context('/register'):
+        with app.test_client() as client:
+            response = client.get('/register')
+            csrf_token = extract_csrf_token(response.data.decode("utf-8"))
+
+            form = RegistrationForm(
+                username=":Invalid@Username;",
+                password="ValidPassword1!",
+                password2="ValidPassword1!",
+                csrf_token = csrf_token
+            )
+            assert not form.validate()
+            assert form.errors
+            
+def test_Registration_allowed_punc_in_username():
+    with app.test_request_context('/register'):
+        with app.test_client() as client:
+            response = client.get('/register')
+            csrf_token = extract_csrf_token(response.data.decode("utf-8"))
+
+            form = RegistrationForm(
+                username="Valid-Username",
+                password="ValidPassword1!",
+                password2="ValidPassword1!",
+                csrf_token = csrf_token
+            )
+            assert form.validate()
+            assert not form.errors
+            
 def test_Registration_short_password():
     with app.test_request_context('/register'):
         with app.test_client() as client:
