@@ -125,6 +125,7 @@ The requirements for validation include:
 - Password must contain a lowercase character
 - Password must contain an uppercase character
 - Password must contain a punctuation character
+- Password must contain a number
 
 ![](/res/register.JPG)
 

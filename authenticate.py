@@ -8,6 +8,8 @@ from wtforms.validators import DataRequired, ValidationError, EqualTo
 import json
 import string
 
+ACCOUNTS_FILE_PATH = "static/accounts.json"
+
 class RegistrationForm(FlaskForm):
     
     def __init__(self, *args, **kwargs):
@@ -15,7 +17,7 @@ class RegistrationForm(FlaskForm):
         self.update() 
         
     def update(self):
-        with open("static/accounts.json", "r") as acc:
+        with open(ACCOUNTS_FILE_PATH, "r") as acc:
             self.users = json.load(acc)["account list"]
         
         
@@ -57,6 +59,9 @@ class RegistrationForm(FlaskForm):
         if not any(char in string.punctuation for char in password):
             self.username.errors.append("No Punctuation")
             raise ValidationError("Bad password: No Punctuation!")
+        if not any(char in string.digits for char in password):
+            self.username.errors.append("No numbers")
+            raise ValidationError("Bad password: No numbers!")
             
     def validate_on_submit(self):
         if not super().validate():

@@ -38,8 +38,8 @@ def test_Registration_valid():
 
             form = RegistrationForm(
                 username="valid-username",
-                password="ValidPassword!",
-                password2="ValidPassword!",
+                password="ValidPassword1!",
+                password2="ValidPassword1!",
                 csrf_token = csrf_token
             )
             assert form.validate()
@@ -53,8 +53,8 @@ def test_Registration_passwords_not_matching():
 
             form = RegistrationForm(
                 username="valid-username",
-                password="ValidPassword!",
-                password2="NonMatchingPassword!",
+                password="ValidPassword1!",
+                password2="NonMatchingPassword1!",
                 csrf_token = csrf_token
             )
             assert not form.validate()
@@ -68,8 +68,8 @@ def test_Registration_existing_username():
 
             form = RegistrationForm(
                 username="TEST_ACCOUNT_DONT_DELETE",
-                password="ValidPassword!",
-                password2="ValidPassword!",
+                password="ValidPassword1!",
+                password2="ValidPassword1!",
                 csrf_token = csrf_token
             )
             assert not form.validate()
@@ -83,8 +83,8 @@ def test_Registration_space_in_username():
 
             form = RegistrationForm(
                 username="Invalid username",
-                password="ValidPassword!",
-                password2="ValidPassword!",
+                password="ValidPassword1!",
+                password2="ValidPassword1!",
                 csrf_token = csrf_token
             )
             assert not form.validate()
@@ -98,8 +98,8 @@ def test_Registration_short_password():
 
             form = RegistrationForm(
                 username="RESERVED_FOR_TESTING",
-                password="Short!",
-                password2="Short!",
+                password="Sh0rt!",
+                password2="Sh0rt!",
                 csrf_token = csrf_token
             )
             assert not form.validate_on_submit()
@@ -113,8 +113,8 @@ def test_Registration_no_lowercase_password():
 
             form = RegistrationForm(
                 username="RESERVED_FOR_TESTING",
-                password="INVALIDPASSWORD!",
-                password2="INVALIDPASSWORD!",
+                password="INVAL1DPASSW0RD!",
+                password2="INVAL1DPASSW0RD!",
                 csrf_token = csrf_token
             )
             assert not form.validate_on_submit()
@@ -128,8 +128,8 @@ def test_Registration_no_uppercase_password():
 
             form = RegistrationForm(
                 username="RESERVED_FOR_TESTING",
-                password="invalidpassword!",
-                password2="invalidpassword!",
+                password="inval1dpassw0rd!",
+                password2="inval1dpassw0rd!",
                 csrf_token = csrf_token
             )
             assert not form.validate_on_submit()
@@ -143,8 +143,8 @@ def test_Registration_no_punc_password():
 
             form = RegistrationForm(
                 username="RESERVED_FOR_TESTING",
-                password="InvalidPassword",
-                password2="InvalidPassword",
+                password="Inval1dPassw0rd",
+                password2="Inval1dPassw0rd",
                 csrf_token = csrf_token
             )
             assert not form.validate_on_submit()
@@ -158,13 +158,28 @@ def test_Registration_space_in_password():
 
             form = RegistrationForm(
                 username="RESERVED_FOR_TESTING",
-                password="Invalid Password!",
-                password2="Invalid Password!",
+                password="Inval1d Passw0rd!",
+                password2="Inval1d Passw0rd!",
                 csrf_token = csrf_token
             )
             assert not form.validate_on_submit()
             assert form.errors
-                       
+
+def test_Registration_no_numbers():
+    with app.test_request_context('/register'):
+        with app.test_client() as client:
+            response = client.get('/register')
+            csrf_token = extract_csrf_token(response.data.decode("utf-8"))
+
+            form = RegistrationForm(
+                username="RESERVED_FOR_TESTING",
+                password="InvalidPassword!",
+                password2="InvalidPassword!",
+                csrf_token = csrf_token
+            )
+            assert not form.validate_on_submit()
+            assert form.errors
+                        
 def test_Login_valid():
     with app.test_request_context('/'):
         with app.test_client() as client:
