@@ -1,7 +1,7 @@
 from flask_login import LoginManager, UserMixin, login_required, login_user, logout_user, current_user
 from werkzeug.security import generate_password_hash, check_password_hash
 
-from flask import Flask, render_template, redirect, url_for
+from flask import Flask, render_template, redirect, url_for, flash
 
 from forms import (
     CourseCompleted, 
@@ -79,17 +79,25 @@ def index():
         username = login.username.data
         password = login.password.data
         
+        account_found = False
+        
         for account in accounts:
             if account["username"] == username:
+                account_found = True
                 
                 if check_password_hash(account["password"], password):
                     user = User(username)
                     login_user(user)
                     return redirect(url_for("homepage"))
+                else:
+                    flash("Incorrect password. Please try again.", "danger")
+
+        if not account_found:
+            flash("Account not found. Please try again.", "danger")
     
     return render_template(
         "index.html",
-        login = login
+        login = login,
     )
 
 @app.route('/register', methods=['GET', 'POST'])
