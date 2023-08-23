@@ -109,6 +109,13 @@ The Login page is the default index page and can be found at `127.0.0.1:5000/` (
 
 ![](/res/login.JPG)
 
+Error Message | Screenshot
+--- | ---
+Account not found. Please try again. | ![](/res/login-invalid-username.JPG)
+Incorrect password. Please try again. | ![](/res/login-invalid-password.JPG)
+
+![](/res/flow_diagrams/Login.svg)
+
 ### Registration Page
 
 The Register page can be found at `127.0.0.1:5000/register`(or equivalent). It features the `RegistrationForm`, the output of which is written to `static/accounts.json` if the form successfully validates.
@@ -130,6 +137,8 @@ The requirements for validation include:
 - Password must contain a number
 
 ![](/res/register.JPG)
+
+![](/res/flow_diagrams/Register.svg)
 
 ### Homepage
 
@@ -176,6 +185,8 @@ Parameter | Summary | Result
 
 - [`templates/index.html`](https://github.com/corey-richardson/course-progress-tracker/blob/main/templates/index.html)
 - [`static/courses.json`](https://github.com/corey-richardson/course-progress-tracker/blob/main/static/courses.json)
+
+![](/res/flow_diagrams/Homepage.svg)
 
 ### View University Modules
 
