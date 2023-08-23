@@ -1,0 +1,12 @@
+{
+    "account list": [
+        {
+            "username": "DONT_DELETE_ME_PLEASE",
+            "password": "pbkdf2:sha256:600000$1uFdRehT8MEXlLqp$69140f21ef20e823611a066137c3d32bb90e2465278b35142471976ea1fd29b3"
+        },
+        {
+            "username": "corey-richardson",
+            "password": "pbkdf2:sha256:600000$TikXngmdfilvjtSP$5ef3e576e7593ce093185be91ad2e80be6669f2306e8529e4ff0cbc8232c04ff"
+        }
+    ]
+}

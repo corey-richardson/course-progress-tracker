@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <link rel="stylesheet" href="../static/style.css">
+        <title>Authentication Practice</title>
+    </head>
+    <body id="base">
+        <nav>
+            <div class="nav-container">
+                <span>
+                    <a href="/">Login</a>
+                    <a href="/register">Register</a>
+                    <a href="/logged_in">Logged In</a>
+                    <a href="/logout">Log Out</a>
+                </span>
+            </div>
+        </nav>
+        
+        <div id="main">
+            {% block content %}
+            {% endblock %}
+        </div>
+
+        <footer>
+            <div class="course-container">
+                <div class="container-text">
+                    <h5>corey-richardson</h5>
+                    <span>
+                        <a href="https://linktr.ee/coreyrichardson">linktr.ee</a> |
+                        <a href="https://github.com/corey-richardson">GitHub</a> |
+                        <a href="https://github.com/corey-richardson/course-progress-tracker">Project Repository</a> |
+                        <a href="https://www.linkedin.com/in/corey-richardson-833300247/">LinkedIn</a> |
+                        <a href="https://github.com/corey-richardson/course-progress-tracker/blob/main/LICENSE">&COPY; {{year}} Corey Richardson</a>
+                    </span>
+                </div>
+            </div>
+        </footer>
+
+    </body>
+</html>

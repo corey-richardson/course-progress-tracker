@@ -1,0 +1,25 @@
+<!-- Login -->
+{% extends "base.html" %}
+{% block content %}
+
+<div class="course-container">
+    <div class="container-text">
+        <h3>Login:</h3>
+        <form method="post">
+            <table style="width: 100%; margin: 10px 0;">
+                {{ login.hidden_tag() }}
+                {% for field in login %}
+                    {% if field.type != "CSRFTokenField" %}
+                    <tr>
+                        <td style="width: 30%;">{{field.label.text}}</td>
+                        <td style="width: 70%;">{{field(autocomplete="off")}}</td>
+                    </tr>
+                    {% endif %}
+                {% endfor %}
+            </table>
+        </form>
+        <p><aside></aside></p>
+    </div>
+</div>
+
+{% endblock %}
