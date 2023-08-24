@@ -300,7 +300,7 @@ def add_course():
         item_list = courses["course list"],
         completed_form = completed_course_form,
         current_user = current_user,
-        item_type = "Module",
+        item_type = "Course",
     )
 
 @app.route('/add_module', methods=["GET","POST"])
