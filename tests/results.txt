@@ -45,4 +45,4 @@ tests/test_forms.py::test_ModuleCompleted_missing_required_field PASSED  [100%]
     from flask import Markup
 
 -- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
-======================== 36 passed, 2 warnings in 1.13s ========================
+======================== 36 passed, 2 warnings in 1.03s ========================

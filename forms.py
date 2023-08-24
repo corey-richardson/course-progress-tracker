@@ -12,9 +12,18 @@ from wtforms.validators import DataRequired, ValidationError
 import json
 from datetime import datetime
 
-COURSE_FILE_PATH = "static/courses.json"
-MODULE_FILE_PATH = "static/modules.json"
-POSTS_FILE_PATH = "static/posts.json"
+import os
+here = os.path.dirname(__file__)
+
+COURSE_FILE_PATH = "data/courses.json"
+MODULE_FILE_PATH = "data/modules.json"
+POSTS_FILE_PATH = "data/posts.json"
+ACCOUNTS_FILE_PATH = "data/accounts.json"
+
+COURSE_FILE_PATH = os.path.join(here, COURSE_FILE_PATH)
+MODULE_FILE_PATH = os.path.join(here, MODULE_FILE_PATH)
+POSTS_FILE_PATH = os.path.join(here, POSTS_FILE_PATH)
+ACCOUNTS_FILE_PATH = os.path.join(here, ACCOUNTS_FILE_PATH)
 
 # , render_kw={"placeholder": "Set post title..."}
 

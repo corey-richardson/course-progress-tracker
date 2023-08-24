@@ -10,6 +10,7 @@ from forms import (
     AddToLog, 
     DateRange,
     SearchUser)
+
 from authenticate import (
     LoginForm, 
     RegistrationForm)
@@ -17,9 +18,18 @@ from authenticate import (
 from datetime import datetime
 import json
 
-COURSE_FILE_PATH = "static/courses.json"
-MODULE_FILE_PATH = "static/modules.json"
-POSTS_FILE_PATH = "static/posts.json"
+import os
+here = os.path.dirname(__file__)
+
+COURSE_FILE_PATH = "data/courses.json"
+MODULE_FILE_PATH = "data/modules.json"
+POSTS_FILE_PATH = "data/posts.json"
+ACCOUNTS_FILE_PATH = "data/accounts.json"
+
+COURSE_FILE_PATH = os.path.join(here, COURSE_FILE_PATH)
+MODULE_FILE_PATH = os.path.join(here, MODULE_FILE_PATH)
+POSTS_FILE_PATH = os.path.join(here, POSTS_FILE_PATH)
+ACCOUNTS_FILE_PATH = os.path.join(here, ACCOUNTS_FILE_PATH)
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'mysecret'
@@ -34,7 +44,7 @@ class User(UserMixin):
 @login_manager.user_loader
 def load_user(user_id):
     # Replace this with actual loading logic from your JSON file
-    with open('static/accounts.json', 'r') as file:
+    with open(ACCOUNTS_FILE_PATH, 'r') as file:
         users = json.load(file)["account list"]
         for user in users:
             if user['username'] == user_id:
@@ -70,7 +80,7 @@ def get_all(courses, condition, status):
 @app.route('/', methods=["GET","POST"])
 def index():
     
-    with open("static/accounts.json", "r") as acc:
+    with open(ACCOUNTS_FILE_PATH, "r") as acc:
         accounts = json.load(acc)["account list"]
     
     login = LoginForm()
@@ -103,7 +113,7 @@ def index():
 @app.route('/register', methods=['GET', 'POST'])
 def register():
     
-    with open("static/accounts.json", "r") as acc:
+    with open(ACCOUNTS_FILE_PATH, "r") as acc:
         accounts = json.load(acc)
     
     register = RegistrationForm(csrf_enabled=False)
@@ -118,7 +128,7 @@ def register():
         }
         
         accounts["account list"].append(new_user)
-        with open("static/accounts.json", "w") as acc:
+        with open(ACCOUNTS_FILE_PATH, "w") as acc:
             json.dump(accounts, acc, indent = 4)
             
         register.update()
@@ -324,7 +334,7 @@ def view_log(visibility):
                 user_to_search = search_user.user_to_search.data
                 posts = get_all(posts, "owner", user_to_search)
         case _:
-            with open('static/accounts.json', 'r') as file:
+            with open(ACCOUNTS_FILE_PATH, 'r') as file:
                 users = json.load(file)["account list"]
                 for user in users:
                     if user['username'] == visibility:

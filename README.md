@@ -3,6 +3,10 @@ A Flask web application that can be used to track which courses and university m
 
 ---
 
+[Live Site](http://coreyrichardson.pythonanywhere.com/)
+
+---
+
 ## Contents
 
 - [Software Installation Guide](#software-installation-guide)
@@ -64,10 +68,11 @@ venv\Scripts\activate
 source venv/bin/activate
 ```
 
-4. Install required packages using pip:
+4. Install required packages from `requirements.txt` using pip:
 ```bash
-pip install Flask Flask-WTF pytest pytest-flask
+pip install -r requirements.txt
 ```
+> To update requirements, run `pip freeze > requirements.txt`.
 
 5. Run the `pytest` command below.
 ```bash

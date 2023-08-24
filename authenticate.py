@@ -8,7 +8,10 @@ from wtforms.validators import DataRequired, ValidationError, EqualTo
 import json
 import string
 
-ACCOUNTS_FILE_PATH = "static/accounts.json"
+import os
+here = os.path.dirname(__file__)
+ACCOUNTS_FILE_PATH = "data/accounts.json"
+ACCOUNTS_FILE_PATH = os.path.join(here, ACCOUNTS_FILE_PATH)
 
 class RegistrationForm(FlaskForm):
     
