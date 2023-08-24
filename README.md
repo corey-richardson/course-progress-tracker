@@ -93,7 +93,6 @@ flask run
 > By default, the application should start on [127.0.0.1:5000/](http://127.0.0.1:5000/) in your web browser.
 
 3. Open your web browser and navigate to [127.0.0.1:5000/](http://127.0.0.1:5000/). You should see the "Course Progress Tracker" application running.
----
 
 ## Step 4: Stopping the Application
 
