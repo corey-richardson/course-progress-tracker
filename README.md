@@ -1,6 +1,8 @@
 # course-progress-tracker
 A Flask web application that can be used to track which courses and university modules I have completed and which I have yet to finish. It also features a 'learning log' where I can use a FlaskForm to create blog posts in order to record my progress. It includes user authentication for individual account tracking.
 
+[![wakatime](https://wakatime.com/badge/user/55c30436-1509-4eb9-9f18-fa9b7c6060c4/project/e96b0cc0-0fd1-40dc-907e-82d0faf4550e.svg)](https://wakatime.com/badge/user/55c30436-1509-4eb9-9f18-fa9b7c6060c4/project/e96b0cc0-0fd1-40dc-907e-82d0faf4550e)
+
 ---
 
 [Live Site](http://coreyrichardson.pythonanywhere.com/)
