@@ -54,6 +54,49 @@ class AddCourse(FlaskForm):
         default="false")
     
     submit = SubmitField()
+
+class AddModule(FlaskForm):
+    
+    name = StringField(
+        "Module Name: ", 
+        validators=[DataRequired()])
+    
+    desc = TextAreaField(
+        "Module Description: ", 
+        validators=[DataRequired()])
+    
+    code = StringField(
+        "Module Code: ", 
+        validators=[DataRequired()])
+    
+    year = SelectField(
+        "Year of Study: ",
+        choices=[
+            "First",
+            "Second",
+            "Third",
+            "Placement",
+            "Final",
+        ],
+        validators=[DataRequired()])
+    
+    optional = SelectField(
+        "Is the module optional? ", 
+        choices=[
+            ("true","Yes"),
+            ("false","No")], 
+        default="false",
+        validators=[DataRequired()])  
+    
+    completed = SelectField(
+        "Have you completed this mdoule? ", 
+        choices=[
+            ("true","Yes"),
+            ("false","No")], 
+        default="false",
+        validators=[DataRequired()])
+    
+    submit = SubmitField()
     
 class CourseCompleted(FlaskForm):
     
@@ -69,7 +112,7 @@ class CourseCompleted(FlaskForm):
         choices_list = [course["name"] for course in courses if course["owner"] == current_user.id]
         if not choices_list:
             choices_list.append(('placeholder', 'No courses found'))
-        self.completed_course.choices = sorted(choices_list)
+        self.completed.choices = sorted(choices_list)
         
     status = SelectField(
         "Status: ",
@@ -77,7 +120,7 @@ class CourseCompleted(FlaskForm):
             ("true","finished"),
             ("false","unfinished")],
         validators=[DataRequired()])
-    completed_course = SelectField(
+    completed = SelectField(
         "Mark Course as Completed:", 
         validators=[DataRequired()])
     
@@ -95,7 +138,7 @@ class ModuleCompleted(FlaskForm):
         choices_list = [module["name"] for module in modules if module["owner"] == current_user.id]
         if not choices_list:
             choices_list.append(('placeholder', 'No modules found'))
-        self.completed_module.choices = sorted(choices_list)
+        self.completed.choices = sorted(choices_list)
         
     status = SelectField(
         "Status: ",
@@ -103,7 +146,7 @@ class ModuleCompleted(FlaskForm):
             ("true","finished"),
             ("false","unfinished")],
         validators=[DataRequired()])
-    completed_module = SelectField(
+    completed = SelectField(
         "Mark Course as Completed:", 
         validators=[DataRequired()],
         )

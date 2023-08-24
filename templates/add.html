@@ -3,11 +3,11 @@
 
 <div class="course-container">
     <div class="container-text">
-        <h3>Add a New Course</h3>
+        <h3>Add a New {{item_type}}</h3>
         <form method="post">
             <table style="width: 100%; margin: 10px 0;">
-                {{ add_course.hidden_tag() }}
-                {% for field in add_course %}
+                {{ add_form.hidden_tag() }}
+                {% for field in add_form %}
                     {% if field.type != "CSRFTokenField" %}
                     <tr>
                         <td style="width: 30%;">{{field.label.text}}</td>
@@ -23,22 +23,10 @@
 
 <div class="course-container">
     <div class="container-text">
-        <h3>Modify Online Courses</h3>
+        <h3>Modify {{item_type}}s</h3>
         <form method="post">
-            {{ completed_course_form.hidden_tag() }}
-            <p> Mark {{completed_course_form.completed_course()}} as {{completed_course_form.status()}} {{completed_course_form.submit()}}</p>
-        </form>
-    </div>
-</div>
-
-<h1>ADD FORM FOR ADDING UNIVERSITY MODULES HERE</h1>
-
-<div class="course-container">
-    <div class="container-text">
-        <h3>Modify University Modules</h3>
-        <form method="post">
-            {{ completed_module_form.hidden_tag() }}
-            <p> Mark {{completed_module_form.completed_module()}} as {{completed_module_form.status()}} {{completed_course_form.submit()}}</p>
+            {{ completed_form.hidden_tag() }}
+            <p> Mark {{completed_form.completed()}} as {{completed_form.status()}} {{completed_form.submit()}}</p>
         </form>
     </div>
 </div>

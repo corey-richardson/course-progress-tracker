@@ -432,7 +432,7 @@ deactivate
 - [`tests/run_tests.sh`](/tests/run_tests.sh)
 - [`tests/results.txt`](/tests/results.txt)
 
-> In this version of the software, there are 36 tests.
+> In this version of the software, there are 39 tests.
 
 ---
 
