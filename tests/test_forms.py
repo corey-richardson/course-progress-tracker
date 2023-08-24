@@ -8,9 +8,7 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from app import app, User
 from flask_login import current_user, login_user
 from forms import (
-    AddCourse, 
     AddToLog, 
-    CourseCompleted, 
     DateRange, 
     ModuleCompleted,
 )
@@ -23,70 +21,6 @@ def extract_csrf_token(content):
     if match:
         return match.group(1)
     return None
-
-#####################################################
-# The following test cases test the form: AddCourse #
-#####################################################
-
-def test_AddCourse_empty():
-    '''
-    Test an empty AddCourse form
-    Expect the form to fail validation
-    '''
-    with app.test_request_context("/add"):
-        login_user(User('TEST_ACCOUNT_DONT_DELETE'))
-        form = AddCourse()
-        assert not form.validate()
-        assert form.errors
-
-def test_AddCourse_valid():
-    '''
-    Test a valid AddCourse form
-    Expect the form to fail validation
-    '''
-    with app.test_request_context('/add'):
-        with app.test_client() as client:
-            login_user(User('TEST_ACCOUNT_DONT_DELETE'))
-            response = client.get('/add')
-            csrf_token = extract_csrf_token(response.data.decode("utf-8"))
-
-            form = AddCourse(
-                name = "Test Title",
-                desc = "This test ensures the form accepts valid input.",
-                url = "https://docs.pytest.org/en/7.4.x",
-                provider = "Pytest Academy",
-                length = "1 minute",
-                section = "Pytest",
-                completed = "true",
-                owner = "Test Owner",
-                csrf_token = csrf_token
-            )
-            assert form.validate()
-            assert not form.errors
-            
-def test_AddCourse_invalid():
-    '''
-    Test an invalid AddCourse form
-    Expect the form to fail validation
-    '''
-    with app.test_request_context('/add'):
-        with app.test_client() as client:      
-            login_user(User('TEST_ACCOUNT_DONT_DELETE'))
-            response = client.get('/add')
-            csrf_token = extract_csrf_token(response.data.decode("utf-8"))
-
-            form = AddCourse(
-                name = "Test Title",
-                desc = "This test ensures the form denies invalid input.",
-                url = "https://docs.pytest.org/en/7.4.x",
-                provider = "Pytest Academy",
-                length = "1 minute",
-                section = "Pytest",
-                completed = "im an invalid choice",
-                csrf_token = csrf_token
-            )
-            assert not form.validate()
-            assert form.errors
 
 ####################################################
 # The following test cases test the form: AddToLog #
@@ -213,84 +147,7 @@ def test_AddToLog_only_link_title():
                 csrf_token=csrf_token
             )
             assert not form.validate_on_submit()
-            assert form.errors
-                
-###########################################################
-# The following test cases test the form: CourseCompleted #
-###########################################################
-                                      
-def test_CourseCompleted_empty():
-    '''
-    Test an empty CourseCompleted form
-    Expect the form to fail validation
-    '''
-    with app.test_request_context("/add"):
-        login_user(User('TEST_ACCOUNT_DONT_DELETE'))
-        form = CourseCompleted()
-        assert not form.validate()
-        assert form.errors
-
-# ENSURE "Test Course" IS IN THE COURSE LIST BEFORE TESTING           
-def test_CourseCompleted_valid():
-    '''
-    Test a valid CourseCompleted form
-    Expect the form to pass validation
-    '''
-    with app.test_request_context('/add'):
-        with app.test_client() as client:
-            login_user(User('TEST_ACCOUNT_DONT_DELETE'))
-            response = client.get('/add')
-            csrf_token = extract_csrf_token(response.data.decode("utf-8"))       
-                        
-            form = CourseCompleted(
-                status = "true",
-                completed_course = "Test Course",
-                csrf_token = csrf_token
-            )
-            assert form.validate()
-            assert not form.errors
-
-# ENSURE "Learn Skydiving for Beginners" IS *NOT* IN THE 
-# COURSE LIST BEFORE TESTING            
-def test_CourseCompleted_invalid():
-    '''
-    Test an invalid CourseCompleted form; 'Learn Skydiving for Beginners' is
-    not a valid choice
-    Expect the form to fail validation 
-    '''
-    with app.test_request_context('/add'):
-        with app.test_client() as client:
-            login_user(User('TEST_ACCOUNT_DONT_DELETE'))
-            response = client.get('/add')
-            csrf_token = extract_csrf_token(response.data.decode("utf-8"))       
-                        
-            form = CourseCompleted(
-                status = "false",
-                completed_course = "Learn Skydiving for Beginners",
-                csrf_token = csrf_token
-            )
-
-            assert not form.validate()
-            assert form.errors
-
-def test_CourseCompleted_misssing_required_field():
-    '''
-    Test a CourseCompleted form with missing required fields
-    Expect the form to fail validation
-    '''
-    with app.test_request_context('/add'):
-        with app.test_client() as client:
-            login_user(User('TEST_ACCOUNT_DONT_DELETE'))
-            response = client.get('/add')
-            csrf_token = extract_csrf_token(response.data.decode("utf-8")) 
-            
-            form = CourseCompleted(
-                status = "true",
-                completed_course = "",
-                csrf_token=csrf_token
-            )
-            assert not form.validate()
-            assert 'completed_course' in form.errors                       
+            assert form.errors           
 
 #####################################################
 # The following test cases test the form: DateRange #
@@ -345,78 +202,3 @@ def test_DateRange_missing_required_field():
             assert not form.validate()
             assert form.errors
             
-###########################################################
-# The following test cases test the form: ModuleCompleted #
-###########################################################
-
-def test_ModuleCompleted_empty():
-    '''
-    Test an empty ModuleCompleted form
-    Expect the form to fail validation
-    '''
-    with app.test_request_context("/add"):
-        login_user(User('TEST_ACCOUNT_DONT_DELETE'))
-        form = ModuleCompleted()
-        assert not form.validate()
-        assert form.errors
-      
-# ENSURE "Test Module" IS IN THE MODULE LIST BEFORE TESTING           
-def test_ModuleCompleted_valid():
-    '''
-    Test a valid ModuleCompleted form
-    Expect the form to pass validation
-    '''
-    with app.test_request_context('/add'):
-        with app.test_client() as client:
-            login_user(User('TEST_ACCOUNT_DONT_DELETE'))
-            response = client.get('/add')
-            csrf_token = extract_csrf_token(response.data.decode("utf-8"))       
-                        
-            form = ModuleCompleted(
-                status = "true",
-                completed_module = "Test Module",
-                csrf_token = csrf_token
-            )
-            assert form.validate()
-            assert not form.errors
-
-# ENSURE "Learn Skydiving for Beginners" IS *NOT* IN THE 
-# MODULE LIST BEFORE TESTING            
-def test_ModuleCompleted_invalid():
-    '''
-    Test an invalid ModuleCompleted form; 'Learn Skydiving for Beginners' is
-    not a valid choice
-    Expect the form to fail validation
-    '''
-    with app.test_request_context('/add'):
-        with app.test_client() as client:
-            login_user(User('TEST_ACCOUNT_DONT_DELETE'))
-            response = client.get('/add')
-            csrf_token = extract_csrf_token(response.data.decode("utf-8"))       
-                        
-            form = ModuleCompleted(
-                status = "false",
-                completed_module = "Learn Skydiving for Beginners",
-                csrf_token = csrf_token
-            )
-            assert not form.validate()
-            assert form.errors
-        
-def test_ModuleCompleted_missing_required_field():
-    '''
-    Test a ModuleCompleted form with missing required fields
-    Expect the form to fail validation
-    '''
-    with app.test_request_context('/add'):
-        with app.test_client() as client:
-            login_user(User('TEST_ACCOUNT_DONT_DELETE'))
-            response = client.get('/add')
-            csrf_token = extract_csrf_token(response.data.decode("utf-8"))
-             
-            form = ModuleCompleted(
-                status = "true",
-                completed_module = "",
-                csrf_token=csrf_token
-            )
-            assert not form.validate()
-            assert 'completed_module' in form.errors

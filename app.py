@@ -6,7 +6,8 @@ from flask import Flask, render_template, redirect, url_for, flash
 from forms import (
     CourseCompleted, 
     ModuleCompleted, 
-    AddCourse, 
+    AddCourse,
+    AddModule, 
     AddToLog, 
     DateRange,
     SearchUser)
@@ -213,6 +214,9 @@ def uni_modules(year):
         # Query only modules from first year
         case "second":
             modules = get_all(modules, "year", "Second")
+        # Query only modules from first year
+        case "third":
+            modules = get_all(modules, "year", "Third")
         # Query only the placement year
         case "placement":
             modules = get_all(modules, "year", "Placement")
@@ -228,16 +232,14 @@ def uni_modules(year):
         current_user = current_user
     )
     
-@app.route('/add', methods=["GET","POST"])
+@app.route('/add_course', methods=["GET","POST"])
 @login_required
-def add():
+def add_course():
     
     # Read courses and modules from 'courses.json' and 'modules.json' into
     # their respective dictionaries
     with open(COURSE_FILE_PATH, "r") as j:
             courses = json.load(j)       
-    with open(MODULE_FILE_PATH, "r") as j:
-            modules = json.load(j)
     
     # Initialise the forms used on this page
     # 'completed_course_form' has the method 'update_course_choices()' 
@@ -246,7 +248,6 @@ def add():
     add_course = AddCourse()
     completed_course_form = CourseCompleted()
     completed_course_form.update_course_choices()
-    completed_module_form = ModuleCompleted()
     
     # When 'add_course' is successfully submitted...
     if add_course.validate_on_submit():
@@ -258,7 +259,7 @@ def add():
         length = add_course.length.data
         section = add_course.section.data
         completed = add_course.completed.data
-        owner = add_course.owner.data
+        owner = current_user.id
         # Format data to be appended to json
         data = {
             "name" : f"{name}",
@@ -274,14 +275,15 @@ def add():
         # Write the update dict to the json file (non-volatile storage)
         with open(COURSE_FILE_PATH, "w") as j:
             json.dump(courses, j, indent=4)
-        # Redirect to the homepage to view the new course in the list    
-        return redirect(url_for("index"))
-
+        # Redirect to the homepage to view the new course in the list 
+        completed_course_form.update_course_choices()   
+        return redirect(url_for("homepage"))
+    
     # When 'completed_course_form' is successfully submitted...
     if completed_course_form.validate_on_submit():
         # Set vars from field data
         status = completed_course_form.status.data
-        course_to_modify = completed_course_form.completed_course.data
+        course_to_modify = completed_course_form.completed.data
         # For each course check if the 'name' attribute matches the target name
         # If yes, update the 'completed' attribute to the new value, then break.
         for course in courses["course list"]:
@@ -291,12 +293,59 @@ def add():
         # Write the updated data to the relevant json file.    
         with open(COURSE_FILE_PATH, "w") as j:
             json.dump(courses, j, indent=4)     
-    
+
+    return render_template(
+        "add.html",
+        add_form = add_course,
+        item_list = courses["course list"],
+        completed_form = completed_course_form,
+        current_user = current_user,
+        item_type = "Module",
+    )
+
+@app.route('/add_module', methods=["GET","POST"])
+@login_required
+def add_module():
+    with open(MODULE_FILE_PATH, "r") as j:
+        modules = json.load(j)
+        
+    add_module = AddModule()
+    completed_module_form = ModuleCompleted()
+    completed_module_form.update_module_choices()
+     
+    # When 'add_course' is successfully submitted...
+    if add_module.validate_on_submit():
+        # Set vars from field data
+        name = add_module.name.data
+        desc = add_module.desc.data
+        code = add_module.code.data
+        year = add_module.year.data
+        optional = add_module.optional.data
+        completed = add_module.completed.data
+        owner = current_user.id
+        # Format data to be appended to json
+        data = {
+            "name" : f"{name}",
+            "desc" : f"{desc}",
+            "code"  : f"{code}",
+            "year" : f"{year}",
+            "optional" : f"{optional}",
+            "completed" : f"{completed}",
+            "owner" : f"{owner}"}
+        # Append the new course data to the existing course dict        
+        modules["module list"].append(data)
+        # Write the update dict to the json file (non-volatile storage)
+        with open(MODULE_FILE_PATH, "w") as j:
+            json.dump(modules, j, indent=4)
+        # Redirect to the homepage to view the new course in the list 
+        completed_module_form.update_module_choices()   
+        return redirect(url_for("uni_modules"))
+       
     # When 'completed_module_form' is successfully submitted...
     if completed_module_form.validate_on_submit():
         # Set vars from field data
         status = completed_module_form.status.data
-        module_to_modify = completed_module_form.completed_module.data   
+        module_to_modify = completed_module_form.completed.data   
         # For each module check if the 'name' attribute matches the target name
         # If yes, update the 'completed' attribute to the new value, then break.
         for module in modules["module list"]:
@@ -306,19 +355,16 @@ def add():
         # Write the updated data to the relevant json file.     
         with open(MODULE_FILE_PATH, "w") as j:
             json.dump(modules, j, indent=4)    
-            
-        # D.R.Y oppurtunity ^
-        
+    
     return render_template(
         "add.html",
-        course_list = courses["course list"],
-        add_course = add_course,
-        completed_course_form = completed_course_form,
-        modules_list = modules["module list"],
-        completed_module_form = completed_module_form,
-        current_user = current_user
+        add_form = add_module,
+        item_list = modules["module list"],
+        completed_form = completed_module_form,
+        current_user = current_user,
+        item_type = "Module",
     )
-
+    
 @app.route('/learning_log', methods=["GET","POST"], defaults={'visibility':'my'})
 @app.route('/learning_log/<visibility>', methods=["GET","POST"])
 @login_required

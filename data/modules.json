@@ -3,11 +3,10 @@
         {
             "name": "Test Module",
             "desc": "Entry used for unit testing purposes.",
-            "url": "https://docs.pytest.org/en/7.4.x",
-            "provider": "Pytest Academy",
-            "length": "1 Second",
-            "section": "Unit Testing",
-            "completed": "true",
+            "code": "TEST001",
+            "year": "First",
+            "optional": "false",
+            "completed": "false",
             "owner": "TEST_ACCOUNT_DONT_DELETE"
         },
         {
