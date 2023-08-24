@@ -39,10 +39,10 @@ tests/test_forms.py::test_ModuleCompleted_invalid PASSED                 [ 97%]
 tests/test_forms.py::test_ModuleCompleted_missing_required_field PASSED  [100%]
 
 =============================== warnings summary ===============================
-../../home/codespace/.python/current/lib/python3.10/site-packages/flask_wtf/recaptcha/widgets.py:2
-../../home/codespace/.python/current/lib/python3.10/site-packages/flask_wtf/recaptcha/widgets.py:2
-  /home/codespace/.python/current/lib/python3.10/site-packages/flask_wtf/recaptcha/widgets.py:2: DeprecationWarning: 'flask.Markup' is deprecated and will be removed in Flask 2.4. Import 'markupsafe.Markup' instead.
+../../opt/python/3.10.8/lib/python3.10/site-packages/flask_wtf/recaptcha/widgets.py:2
+../../opt/python/3.10.8/lib/python3.10/site-packages/flask_wtf/recaptcha/widgets.py:2
+  /opt/python/3.10.8/lib/python3.10/site-packages/flask_wtf/recaptcha/widgets.py:2: DeprecationWarning: 'flask.Markup' is deprecated and will be removed in Flask 2.4. Import 'markupsafe.Markup' instead.
     from flask import Markup
 
 -- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
-======================== 36 passed, 2 warnings in 1.03s ========================
+======================== 36 passed, 2 warnings in 1.15s ========================

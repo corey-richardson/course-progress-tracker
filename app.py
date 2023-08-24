@@ -80,6 +80,9 @@ def get_all(courses, condition, status):
 @app.route('/', methods=["GET","POST"])
 def index():
     
+    if current_user.is_authenticated:
+        return redirect(url_for("homepage"))
+    
     with open(ACCOUNTS_FILE_PATH, "r") as acc:
         accounts = json.load(acc)["account list"]
     
@@ -113,6 +116,9 @@ def index():
 @app.route('/register', methods=['GET', 'POST'])
 def register():
     
+    if current_user.is_authenticated:
+        return redirect(url_for("homepage"))
+        
     with open(ACCOUNTS_FILE_PATH, "r") as acc:
         accounts = json.load(acc)
     
