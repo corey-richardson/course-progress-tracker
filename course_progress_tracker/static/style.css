@@ -1,0 +1,50 @@
+p, aside {
+    margin: 0;
+}
+
+h2 > a {
+    text-decoration: none;
+    color: black;
+}
+
+h2 > a:hover {
+    text-decoration: underline;
+}
+
+h2 > aside {
+    display: inline-block;
+    font-size: medium;
+    padding-left: 5px;
+}
+
+.course aside {
+    font-weight: bold;
+    color: grey;
+}
+
+hr {
+    margin: 15px auto;
+}
+
+.course {
+    width: 80%;
+    margin: 0 auto;
+}
+
+.dot {
+    height: 11px;
+    width: 11px;
+    border: 1px solid black;
+    border-radius: 50%;
+    display: inline-block;
+    position: relative;
+    bottom: 4px;
+}
+
+.green {
+    background-color: lightgreen;
+}
+
+.red {
+    background-color: red;
+}

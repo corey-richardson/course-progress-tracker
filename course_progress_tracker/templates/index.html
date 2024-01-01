@@ -1,0 +1,60 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Homepage
+{% endblock %}
+
+{% block main %}
+    <h1>Your {{ type }}.</h1> <br>
+
+    {% if type == "Courses" %}
+    <form action="/" method="post">
+    {% else %}
+    <form action="/modules" method="post">
+    {% endif %}
+        <div class="mb-3" style="display: inline-block;">
+            <select class="form-select mx-auto w-auto" name="sort_index" required>
+                <option selected disabled hidden>Sort By</option>
+                <option value="name">Name</option>
+                <option value="provider">Provider</option>
+                <option value="is_complete DESC">Completion Status (Completed first)</option>
+                <option value="is_complete ASC">Completion Status (Incomplete first)</option>
+            </select>
+        </div>
+        <button style="display: inline-block; position: relative; bottom: 2px;" class="btn btn-primary" type="submit">Sort</button>
+    </form>
+
+    <div class="course"> <!-- In div to match course containers width-->
+        <hr>
+    </div>
+
+    {% for course in courses %}
+        <div class="course">
+
+            <h2>
+                {% if course[7] == 1 %}
+                    <span class="green dot"></span>
+                {% else %}
+                    <span class="red dot"></span>
+                {% endif %}
+
+                {% if course[3] %}
+                    <a href="{{ course[3] }}" target="_blank">{{ course[2] }}</a>
+                {% else %}
+                    {{ course[2] }}
+                {% endif %}
+
+                <aside>- {{ course[6] }}</aside>
+            </h2>
+            <p>
+                {{ course[5] }} <br>
+                <aside>{{ course[4] }}</aside>
+            </p>
+
+            {% if not loop.last %}
+            <hr>
+            {% endif %}
+        </div>
+    {% endfor %}
+
+{% endblock %}
