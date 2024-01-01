@@ -26,11 +26,6 @@ hr {
     margin: 15px auto;
 }
 
-.course {
-    width: 80%;
-    margin: 0 auto;
-}
-
 .dot {
     height: 11px;
     width: 11px;
@@ -47,4 +42,21 @@ hr {
 
 .red {
     background-color: red;
+}
+
+.course {
+    width: 80%;
+    margin: 0 auto;
+}
+
+@media (min-width: 1920px) {
+    .course {
+        width: 60%;
+    }
+}
+
+@media (min-width: 3000px) {
+    .course {
+        width: 40%;
+    }
 }
