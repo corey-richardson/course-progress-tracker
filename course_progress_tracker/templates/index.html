@@ -7,7 +7,11 @@
 {% block main %}
     <h1>Your {{ type }}.</h1> <br>
 
+    {% if type == "Courses" %}
     <form action="/" method="post">
+    {% else %}
+    <form action="/modules" method="post">
+    {% endif %}
         <div class="mb-3" style="display: inline-block;">
             <select class="form-select mx-auto w-auto" name="sort_index" required>
                 <option selected disabled hidden>Sort By</option>

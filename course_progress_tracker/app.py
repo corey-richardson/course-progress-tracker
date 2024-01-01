@@ -42,22 +42,22 @@ def index():
             case "provider":
                 courses = db.execute(
                     "SELECT * FROM courses WHERE user_id = ? AND is_course = true ORDER BY provider, name",
-                    session["user_id"]
+                    (session["user_id"],)
                 )
             case "is_complete DESC":
                 courses = db.execute(
                     "SELECT * FROM courses WHERE user_id = ? AND is_course = true ORDER BY is_complete DESC",
-                    session["user_id"]
+                    (session["user_id"],)
                 )
             case "is_complete ASC":
                 courses = db.execute(
                     "SELECT * FROM courses WHERE user_id = ? AND is_course = true ORDER BY is_complete ASC",
-                    session["user_id"]
+                    (session["user_id"],)
                 )
             case _: # name or anything else
                 courses = db.execute(
                     "SELECT * FROM courses WHERE user_id = ? AND is_course = true ORDER BY name",
-                    session["user_id"]
+                    (session["user_id"],)
                 )
 
     else:
@@ -75,14 +75,41 @@ def index():
 
     return render_template("index.html", courses=courses, type="Courses")
 
-@app.route("/modules")
+@app.route("/modules", methods=["GET", "POST"])
 @login_required
 def modules():
     """Display modules the user has added to the database."""
-    modules = db.execute(
-        "SELECT * FROM courses WHERE user_id = ? AND is_course = false ORDER BY name",
-        (session["user_id"],)
-    ).fetchall()
+    if request.method == "POST" and request.form.get("sort_index"):
+        sort_index = request.form.get("sort_index")
+        match sort_index:
+            case "provider":
+                modules = db.execute(
+                    "SELECT * FROM courses WHERE user_id = ? AND is_course = false ORDER BY provider, name",
+                    (session["user_id"],)
+                )
+            case "is_complete DESC":
+                modules = db.execute(
+                    "SELECT * FROM courses WHERE user_id = ? AND is_course = false ORDER BY is_complete DESC",
+                    (session["user_id"],)
+                )
+            case "is_complete ASC":
+                modules = db.execute(
+                    "SELECT * FROM courses WHERE user_id = ? AND is_course = false ORDER BY is_complete ASC",
+                    (session["user_id"],)
+                )
+            case _: # name or anything else
+                modules = db.execute(
+                    "SELECT * FROM courses WHERE user_id = ? AND is_course = false ORDER BY name",
+                    (session["user_id"],)
+                )
+
+    else:
+        modules = db.execute(
+            "SELECT * FROM courses WHERE user_id = ? AND is_course = false ORDER BY name",
+            (session["user_id"],)
+        )
+
+    modules = modules.fetchall()
 
     conn.commit()
 
