@@ -9,20 +9,46 @@
 
     <form action="/update" method="post">
         <div class="mb-3">
-            <select autofocus class="form-select mx-auto w-auto" name="course_name" required>
+            <select autofocus class="form-select mx-auto w-auto" name="current_course_name" required>
                 <option selected disabled hidden>Course or Module Name</option>
                 {% for name in names %}
                     <option value="{{ name[0] }}">{{ name[0] }}</option>
                 {% endfor %}
             </select>
         </div>
+
         <div class="mb-3">
-            <select class="form-select mx-auto w-auto" name="completion" required>
-                <option selected disabled hidden>Completion Status</option>
+            <input autocomplete="off" autofocus class="form-control mx-auto w-auto" name="course_name" placeholder="Course Name" type="text">
+        </div>
+        <div class="mb-3">
+            <input autocomplete="off" class="form-control mx-auto w-auto" name="course_url" placeholder="Update Course Link" type="url">
+        </div>
+        <div class="mb-3">
+            <input autocomplete="off" class="form-control mx-auto w-auto" name="desc" placeholder="Update Course Description" type="textarea">
+        </div>
+        <div class="mb-3">
+            <input autocomplete="off" class="form-control mx-auto w-auto" name="topics" placeholder="Update Topics Covered (Comma Seperated)" type="text">
+        </div>
+        <div class="mb-3">
+            <input autocomplete="off" class="form-control mx-auto w-auto" name="provider" placeholder="Update Course Provider" type="text">
+        </div>
+
+        <div class="mb-3">
+            <select class="form-select mx-auto w-auto" name="completion">
+                <option selected disabled hidden>Update Completion Status</option>
                 <option value="true">Completed</option>
                 <option value="false">Not complete</option>
             </select>
         </div>
+
+        <div class="mb-3">
+            <select class="form-select mx-auto w-auto" name="type">
+                <option selected disabled hidden>Update Type</option>
+                <option value="true">Online Course</option>
+                <option value="false">University Module</option>
+            </select>
+        </div>
+
         <button class="btn btn-primary" type="submit">Update Entry</button>
     </form>
 {% endblock %}

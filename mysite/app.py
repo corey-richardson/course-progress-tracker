@@ -246,25 +246,86 @@ def add():
 def update():
 
     if request.method == "POST":
+        # Course to update (reqd.)
+        current_course_name = request.form.get("current_course_name")
+        # Fields to update (optnl.)
         course_name = request.form.get("course_name")
+        course_url = request.form.get("course_url")
+        course_desc = request.form.get("desc")
+        course_topics = request.form.get("topics")
+        course_provider = request.form.get("provider")
         course_completed = request.form.get("completion")
+        course_type = request.form.get("type")
 
-        if not course_name:
+        if not current_course_name:
             return redirect(url_for("failure", ERR_MSG="Course name field was left empty."))
-        if not course_completed:
-            return redirect(url_for("failure", ERR_MSG="Course completion status field was left empty."))
 
-        course_completed = True if course_completed == "true" else False
 
-        db.execute(
-            "UPDATE courses \
-            SET is_complete = ? \
-            WHERE name = ? AND user_id = ?",
-            (course_completed, course_name, session["user_id"],)
-        )
+        if course_name:
+            db.execute(
+                "UPDATE courses \
+                SET name = ? \
+                WHERE name = ? AND user_id = ?",
+                (course_name, current_course_name, session["user_id"],)
+            )
+            conn.commit()
+        
+        if course_url:
+            db.execute(
+                "UPDATE courses \
+                SET url = ? \
+                WHERE name = ? AND user_id = ?",
+                (course_url, current_course_name, session["user_id"],)
+            )
+            conn.commit()
+        
+        if course_desc:
+            db.execute(
+                "UPDATE courses \
+                SET desc = ? \
+                WHERE name = ? AND user_id = ?",
+                (course_desc, current_course_name, session["user_id"],)
+            )
+            conn.commit()
+        
+        if course_topics:
+            db.execute(
+                "UPDATE courses \
+                SET topics = ? \
+                WHERE name = ? AND user_id = ?",
+                (course_topics, current_course_name, session["user_id"],)
+            )
+            conn.commit()
+        
+        if course_provider:
+            db.execute(
+                "UPDATE courses \
+                SET provider = ? \
+                WHERE name = ? AND user_id = ?",
+                (course_provider, current_course_name, session["user_id"],)
+            )
+            conn.commit()
+        
+        if course_completed:
+            course_completed = True if course_completed == "true" else False
+            db.execute(
+                "UPDATE courses \
+                SET is_complete = ? \
+                WHERE name = ? AND user_id = ?",
+                (course_completed, current_course_name, session["user_id"],)
+            )
+            conn.commit()
 
-        conn.commit()
-
+        if course_type:
+            course_type = True if course_type == "true" else False
+            db.execute(
+                "UPDATE courses \
+                SET is_course = ? \
+                WHERE name = ? AND user_id = ?",
+                (course_type, current_course_name, session["user_id"],)
+            )
+            conn.commit()
+            
         return redirect("/")
 
     names = db.execute(
