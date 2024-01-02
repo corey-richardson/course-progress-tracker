@@ -59,14 +59,14 @@ hr {
     margin: 0 auto;
 }
 
-select {
-    max-width: 80%;
+input, select {
+    width: 80%;
 }
 
 tr:nth-child(even) {
     background-color: #f2f2f2;
   }
-  
+
 @media (min-width: 1920px) {
     .course {
         width: 60%;
