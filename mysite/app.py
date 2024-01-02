@@ -351,6 +351,9 @@ def skills():
         (session["user_id"],)
     ).fetchall()
     
+    if len(course_topics) == 0:
+        return render_template("empty.html", type="skills")
+    
     topics = {}
     
     # course_topics = [('Python, OOP',), ('CompSci, C, Python, HTML, CSS, JS, SQL',)]
