@@ -35,3 +35,11 @@ Route | Page Name | Description
 `/add` | Add | HTML form to add a new course or module to the database.
 `/update` | Update | HTML form to allow the user to modify the completition status of one of their courses or modules.
 `/drop` | Drop | HTML form to allow the user to drop one of their enrollments from the database.
+
+---
+
+To pull changes into PythonAnywhere:
+```
+git checkout main
+git pull origin main
+```
