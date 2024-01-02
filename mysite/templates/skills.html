@@ -1,12 +1,22 @@
 {% extends "layout.html" %}
 
 {% block title %}
-    Register
+    Skills
 {% endblock %}
 
 {% block main %}
     <h2>My Skills.</h2> <br>
-    {{ skills }}
+    <table>
+        <tr>
+            <th>Skill</th>
+            <th>Number of Relevant Certifications</th>
+        </tr>
+        {% for skill in skills %}
+            <tr>
+                <td>{{ skill[0] }}</td>
+                <td>{{ skill[1] }}</td>
+            </tr>
+        {% endfor %}
+    </table>
 
-    
 {% endblock %}
