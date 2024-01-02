@@ -352,13 +352,16 @@ def skills():
         (session["user_id"],)
     ).fetchall()
     
-    for skill in course_topics.split(",").lower().strip():
-        if topics[skill]:
-            topics[skill] += 1
-        else:
-            topics[skill] = 0
-            
-    skills = sorted(topics.items(), key=lambda x:x[1])
+    print(course_topics)
     
+    # for skill in course_topics.split(",").lower().strip():
+    #     if topics[skill]:
+    #         topics[skill] += 1
+    #     else:
+    #         topics[skill] = 0
+            
+    # skills = sorted(topics.items(), key=lambda x:x[1])
+    
+    skills = []
     return render_template("skills.html", skills=skills)
     
