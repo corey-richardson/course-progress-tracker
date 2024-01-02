@@ -345,23 +345,26 @@ def change_password():
 @app.route("/skills")
 @login_required
 def skills():
-    topics = {}
     course_topics = db.execute(
         "SELECT topics FROM courses \
         WHERE user_id = ? AND is_complete = true",
         (session["user_id"],)
     ).fetchall()
     
-    print(course_topics)
+    topics = {}
     
-    # for skill in course_topics.split(",").lower().strip():
-    #     if topics[skill]:
-    #         topics[skill] += 1
-    #     else:
-    #         topics[skill] = 0
-            
-    # skills = sorted(topics.items(), key=lambda x:x[1])
-    
-    skills = []
+    # course_topics = [('Python, OOP',), ('CompSci, C, Python, HTML, CSS, JS, SQL',)]
+    for skill_tuple in course_topics:
+        skill_tuple_contents = skill_tuple[0]
+        skill_list = skill_tuple_contents.split(",")
+        for skill in skill_list:
+            skill = skill.strip()
+            if topics[skill]:
+                topics[skill] += 1
+            else:
+                topics[skill] = 1
+                    
+    skills = sorted(topics.items(), key=lambda x:x[1], reverse=True)
+
     return render_template("skills.html", skills=skills)
     
