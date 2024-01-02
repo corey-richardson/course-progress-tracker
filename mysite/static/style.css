@@ -64,7 +64,7 @@ select {
 }
 
 input, select {
-    min-width: 40%;
+    min-width: 80%;
 }
 
 tr:nth-child(even) {
@@ -75,10 +75,18 @@ tr:nth-child(even) {
     .course {
         width: 60%;
     }
+
+    input, select {
+        min-width: 60%;
+    }
 }
 
 @media (min-width: 3000px) {
     .course {
         width: 40%;
+    }
+
+    input, select {
+        min-width: 40%;
     }
 }
