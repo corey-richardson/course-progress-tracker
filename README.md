@@ -43,3 +43,9 @@ To pull changes into PythonAnywhere:
 git checkout main
 git pull origin main
 ```
+
+To push changes from PythonAnywhere:
+```
+cd home/coreyrichardson
+git push origin main
+```
