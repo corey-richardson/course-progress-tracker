@@ -69,7 +69,7 @@ def index():
     courses = courses.fetchall()
 
     if len(courses) == 0:
-        return render_template("empty.html", type="courses")
+        return render_template("empty.html", type="courses", action="display")
 
     return render_template("index.html", courses=courses, type="Courses")
 
@@ -110,7 +110,7 @@ def modules():
     modules = modules.fetchall()
 
     if len(modules) == 0:
-        return render_template("empty.html", type="modules")
+        return render_template("empty.html", type="modules", action="display")
 
     return render_template("index.html", courses=modules, type="Modules")
 
@@ -271,6 +271,9 @@ def update():
         "SELECT name FROM courses WHERE user_id = ? ORDER BY is_course, name",
         (session["user_id"],)
     ).fetchall()
+    
+    if len(names) == 0:
+        return render_template("empty.html", type="entries", action="update")
 
     return render_template("update.html", names=names)
 
@@ -300,6 +303,9 @@ def drop():
         "SELECT name FROM courses WHERE user_id = ? ORDER BY is_course, name",
         (session["user_id"],)
     ).fetchall()
+    
+    if len(names) == 0:
+        return render_template("empty.html", type="entries", action="drop")
 
     return render_template("drop.html", names=names)
 
@@ -352,7 +358,7 @@ def skills():
     ).fetchall()
     
     if len(course_topics) == 0:
-        return render_template("empty.html", type="skills")
+        return render_template("empty.html", type="skills", action="display")
     
     topics = {}
     
