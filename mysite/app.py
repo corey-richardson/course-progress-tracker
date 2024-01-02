@@ -259,15 +259,6 @@ def update():
 
         if not current_course_name:
             return redirect(url_for("failure", ERR_MSG="Course name field was left empty."))
-
-
-        if course_name:
-            db.execute(
-                "UPDATE courses \
-                SET name = ? \
-                WHERE name = ? AND user_id = ?",
-                (course_name, current_course_name, session["user_id"],)
-            )
         
         if course_url:
             db.execute(
@@ -317,6 +308,15 @@ def update():
                 SET is_course = ? \
                 WHERE name = ? AND user_id = ?",
                 (course_type, current_course_name, session["user_id"],)
+            )
+        
+        # Name must be changed last
+        if course_name:
+            db.execute(
+                "UPDATE courses \
+                SET name = ? \
+                WHERE name = ? AND user_id = ?",
+                (course_name, current_course_name, session["user_id"],)
             )
         
         conn.commit()    
