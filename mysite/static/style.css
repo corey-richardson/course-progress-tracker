@@ -1,24 +1,3 @@
-body {
-    margin: 0;
-    display: flex;
-    min-height: 100vh;
-    flex-direction: column;
-}
-
-.content {
-    flex: 1;
-}
-
-/* Media query to adjust footer position based on screen height */
-@media screen and (max-height: 800px) {
-    footer {
-        position: fixed;
-        left: 0;
-        bottom: 0;
-        width: 100%;
-    }
-}
-
 p, aside {
     margin: 0;
 }

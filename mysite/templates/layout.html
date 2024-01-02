@@ -30,6 +30,7 @@
                         <ul class="navbar-nav me-auto mt-2">
                             <li class="nav-item"><a class="nav-link" href="/">View Courses</a></li>
                             <li class="nav-item"><a class="nav-link" href="/modules">View Modules</a></li>
+                            <li class="nav-item"><a class="nav-link">|</a></li>
                             <li class="nav-item"><a class="nav-link" href="/add">Add an Entry</a></li>
                             <li class="nav-item"><a class="nav-link" href="/update">Update an Entry</a></li>
                             <li class="nav-item"><a class="nav-link" href="/drop">Drop an Entry</a></li>
@@ -56,17 +57,16 @@
             </header>
         {% endif %}
 
-        <main class="content container-fluid py-5 text-center">
+        <main class="container-fluid py-5 text-center">
             {% block main %}{% endblock %}
         </main>
 
-        <footer class="bg-light border navbar navbar-expand-md navbar-light mt-5 min-vh-100">
+        <footer class="bg-light border navbar navbar-expand-md navbar-light mt-5">
             <div class="container-fluid">
                 <span class="navbar-text">
-                    <a class="nav-link" href="https://github.com/corey-richardson/course-progress-tracker/blob/main/LICENSE" target="_blank">&copy; 2024 Course Progress Tracker</a>
+                    <a class="nav-link" href="https://github.com/corey-richardson/course-progress-tracker" target="_blank">&copy; 2024 Course Progress Tracker</a>
                 </span>
                 <ul class="navbar-nav ms-auto mt-2">
-                    <li class="nav-item"><a class="nav-link" href="https://github.com/corey-richardson/course-progress-tracker" target="_blank">course-progress-tracker</a></li>
                     <li class="nav-item"><b><a class="nav-link" href="https://linktr.ee/coreyrichardson" target="_blank">corey-richardson</a></b></li>
                 </ul>
             </div>
