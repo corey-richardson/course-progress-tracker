@@ -359,7 +359,7 @@ def skills():
         skill_list = skill_tuple_contents.split(",")
         for skill in skill_list:
             skill = skill.strip()
-            if topics[skill]:
+            if skill in topics:
                 topics[skill] += 1
             else:
                 topics[skill] = 1
