@@ -341,3 +341,24 @@ def change_password():
         return render_template("success.html")
 
     return render_template("change_password.html")
+
+@app.route("/skills")
+@login_required
+def skills():
+    topics = {}
+    course_topics = db.execute(
+        "SELECT topics FROM courses \
+        WHERE user_id = ? AND is_complete = true",
+        (session["user_id"])
+    ).fetchall()
+    
+    for skill in course_topics.split(",").lower().strip():
+        if topics[skill]:
+            topics[skill] += 1
+        else:
+            topics[skill] = 0
+            
+    skills = sorted(topics.items(), key=lambda x:x[1])
+    
+    return render_template("skills.html", skills=skills)
+    
