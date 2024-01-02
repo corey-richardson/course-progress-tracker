@@ -349,7 +349,7 @@ def skills():
     course_topics = db.execute(
         "SELECT topics FROM courses \
         WHERE user_id = ? AND is_complete = true",
-        (session["user_id"])
+        (session["user_id"],)
     ).fetchall()
     
     for skill in course_topics.split(",").lower().strip():
