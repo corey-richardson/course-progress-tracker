@@ -7,11 +7,9 @@
 {% block main %}
     <h1>Your {{ type }}.</h1>
 
-    <p>
-        <span class="green dot" style="top: 1.3px;"></span> Completed Courses -
-        <span class="amber dot" style="top: 1.3px;"></span> In Progress -
-        <span class="red dot"   style="top: 1.3px;"></span> Not Started
-    </p> <br>
+    <span class="green dot" style="top: 1.3px;"></span> Completed Courses
+    <span class="amber dot" style="top: 1.3px;"></span> In Progress
+    <span class="red dot"   style="top: 1.3px;"></span> Not Started
 
     <div class="course"> <!-- In div to match course containers width-->
         {% if type == "Courses" %}
