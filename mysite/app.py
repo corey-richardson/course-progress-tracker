@@ -46,17 +46,17 @@ def index():
                 )
             case "completed":
                 courses = db.execute(
-                    "SELECT * FROM courses WHERE user_id = ? AND is_course = true AND is_completed = 2",
+                    "SELECT * FROM courses WHERE user_id = ? AND is_course = true AND is_complete = 2",
                     (session["user_id"],)
                 )
             case "inProgress":
                 courses = db.execute(
-                    "SELECT * FROM courses WHERE user_id = ? AND is_course = true AND is_completed = 1",
+                    "SELECT * FROM courses WHERE user_id = ? AND is_course = true AND is_complete = 1",
                     (session["user_id"],)
                 )
             case "incomplete":
                 courses = db.execute(
-                    "SELECT * FROM courses WHERE user_id = ? AND is_course = true AND is_completed = 0",
+                    "SELECT * FROM courses WHERE user_id = ? AND is_course = true AND is_complete = 0",
                     (session["user_id"],)
                 )
             case _: # name or anything else
