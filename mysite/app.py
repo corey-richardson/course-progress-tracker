@@ -59,6 +59,11 @@ def index():
                     "SELECT * FROM courses WHERE user_id = ? AND is_course = true ORDER BY is_complete ASC, name",
                     (session["user_id"],)
                 )
+            case "hideCompleted":
+                courses = db.execute(
+                    "SELECT * FROM courses WHERE user_id = ? AND is_course = true AND is_complete != 2 ORDER BY is_complete DESC, name",
+                    (session["user_id"],)
+                )
             case _: # name or anything else
                 courses = db.execute(
                     "SELECT * FROM courses WHERE user_id = ? AND is_course = true ORDER BY name",
