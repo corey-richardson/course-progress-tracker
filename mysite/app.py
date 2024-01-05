@@ -44,14 +44,19 @@ def index():
                     "SELECT * FROM courses WHERE user_id = ? AND is_course = true ORDER BY provider, name",
                     (session["user_id"],)
                 )
-            case "is_complete DESC":
+            case "completed":
                 courses = db.execute(
-                    "SELECT * FROM courses WHERE user_id = ? AND is_course = true ORDER BY is_complete DESC",
+                    "SELECT * FROM courses WHERE user_id = ? AND is_course = true AND is_completed = 2",
                     (session["user_id"],)
                 )
-            case "is_complete ASC":
+            case "inProgress":
                 courses = db.execute(
-                    "SELECT * FROM courses WHERE user_id = ? AND is_course = true ORDER BY is_complete ASC",
+                    "SELECT * FROM courses WHERE user_id = ? AND is_course = true AND is_completed = 1",
+                    (session["user_id"],)
+                )
+            case "incomplete":
+                courses = db.execute(
+                    "SELECT * FROM courses WHERE user_id = ? AND is_course = true AND is_completed = 0",
                     (session["user_id"],)
                 )
             case _: # name or anything else
@@ -211,7 +216,6 @@ def add():
         if not course_type:
             return redirect(url_for("failure", ERR_MSG="Course type field was left empty."))
 
-        course_completed = True if course_completed == "true" else False
         course_type = True if course_type == "true" else False
 
         if not course_url:
@@ -293,7 +297,6 @@ def update():
             )
         
         if course_completed:
-            course_completed = True if course_completed == "true" else False
             db.execute(
                 "UPDATE courses \
                 SET is_complete = ? \

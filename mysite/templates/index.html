@@ -17,8 +17,9 @@
                 <option selected disabled hidden>Sort By</option>
                 <option value="name">Name</option>
                 <option value="provider">Provider</option>
-                <option value="is_complete DESC">Completion Status (Completed first)</option>
-                <option value="is_complete ASC">Completion Status (Incomplete first)</option>
+                <option value="inProgress">In Progress</option>
+                <option value="completed">Completed Courses</option>
+                <option value="incomplete">Incomplete Courses</option>
             </select>
         </div>
         <button style="display: inline-block; position: relative; bottom: 2px;" class="btn btn-primary" type="submit">Sort</button>
@@ -32,8 +33,10 @@
         <div class="course">
 
             <h2>
-                {% if course[7] == 1 %}
+                {% if course[7] == 2 %}
                     <span class="green dot"></span>
+                {% elif course[7] == 1 %}
+                    <span class="amber dot"></span>
                 {% else %}
                     <span class="red dot"></span>
                 {% endif %}

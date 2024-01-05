@@ -47,5 +47,7 @@ git pull origin main
 To push changes from PythonAnywhere:
 ```
 cd home/coreyrichardson
+git add .
+git commit -m "<msg>"
 git push origin main
 ```
