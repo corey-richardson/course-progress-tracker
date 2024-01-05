@@ -46,12 +46,12 @@ def index():
                 )
             case "completed":
                 courses = db.execute(
-                    "SELECT * FROM courses WHERE user_id = ? AND is_course = true ORDER BY CASE is_complete WHEN 1 THEN 1 WHEN 2 THEN 2 WHEN 0 THEN 3 END",
+                    "SELECT * FROM courses WHERE user_id = ? AND is_course = true ORDER BY is_complete DESC",
                     (session["user_id"],)
                 )
             case "inProgress":
                 courses = db.execute(
-                    "SELECT * FROM courses WHERE user_id = ? AND is_course = true AND is_complete = 1",
+                    "SELECT * FROM courses WHERE user_id = ? AND is_course = true ORDER BY CASE is_complete WHEN 1 THEN 1 WHEN 2 THEN 2 WHEN 0 THEN 3 END",
                     (session["user_id"],)
                 )
             case "incomplete":
