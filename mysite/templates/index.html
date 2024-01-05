@@ -7,6 +7,8 @@
 {% block main %}
     <h1>Your {{ type }}.</h1> <br>
 
+    <p><span class="green dot"></span> Completed Courses | <span class="amber dot"></span> In Progress | <span class="red dot"></span> Not Started</p>
+
     <div class="course"> <!-- In div to match course containers width-->
         {% if type == "Courses" %}
         <form action="/" method="post">
