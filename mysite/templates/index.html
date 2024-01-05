@@ -7,26 +7,26 @@
 {% block main %}
     <h1>Your {{ type }}.</h1> <br>
 
-    {% if type == "Courses" %}
-    <form action="/" method="post">
-    {% else %}
-    <form action="/modules" method="post">
-    {% endif %}
-    
-        <div class="mb-3" style="display: inline-block;">
-            <select class="form-select mx-auto w-auto" name="sort_index" required>
-                <option selected disabled hidden>Sort By</option>
-                <option value="name">Name</option>
-                <option value="provider">Provider</option>
-                <option value="completed">Completed</option>
-                <option value="inProgress">In Progress</option>
-                <option value="incomplete">Not Started</option>
-            </select>
-        </div>
-        <button style="display: inline-block; position: relative; bottom: 2px;" class="btn btn-primary" type="submit">Sort</button>
-    </form>
-
     <div class="course"> <!-- In div to match course containers width-->
+        {% if type == "Courses" %}
+        <form action="/" method="post">
+        {% else %}
+        <form action="/modules" method="post">
+        {% endif %}
+
+            <div class="mb-3" style="display: inline-block;">
+                <select class="form-select mx-auto w-auto" name="sort_index" required>
+                    <option selected disabled hidden>Sort By</option>
+                    <option value="name">Name</option>
+                    <option value="provider">Provider</option>
+                    <option value="completed">Completed</option>
+                    <option value="inProgress">In Progress</option>
+                    <option value="incomplete">Not Started</option>
+                </select>
+            </div>
+            <button style="display: inline-block; position: relative; bottom: 2px;" class="btn btn-primary" type="submit">Sort</button>
+        </form>
+
         <hr>
     </div>
 
