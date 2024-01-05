@@ -456,7 +456,7 @@ def skills():
             else:
                 topics[skill] = 1
                     
-    skills = sorted(topics.items(), key=lambda x: (-x[1], x[0]))
+    skills = sorted(topics.items(), key=lambda x: (-x[1], x[0].lower()))
 
     return render_template("skills.html", skills=skills)
     
