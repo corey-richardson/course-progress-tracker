@@ -14,8 +14,8 @@
         <form action="/modules" method="post">
         {% endif %}
     
-            <div class="mb-3" style="min-width: 60%; max-width: 80%; display: flex; align-items: baseline;">
-                <select class="form-select mx-auto w-auto" name="sort_index" style="margin-right: 5px;" required>
+            <div class="mb-3" style="display: flex; align-items: baseline;">
+                <select class="form-select mx-auto w-auto" name="sort_index" required style="margin-right: 5px; flex: 1;">
                     <option selected disabled hidden>Sort By</option>
                     <option value="name">Name</option>
                     <option value="provider">Provider</option>
@@ -23,7 +23,7 @@
                     <option value="inProgress">In Progress</option>
                     <option value="incomplete">Not Started</option>
                 </select>
-                <button class="btn btn-primary" type="submit">Sort</button>
+                <button class="btn btn-primary" type="submit" style="flex-shrink: 0;">Sort</button>
             </div>
         </form>
     </div>
