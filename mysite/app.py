@@ -351,7 +351,7 @@ def update():
         return redirect("/")
 
     names = db.execute(
-        "SELECT name FROM courses WHERE user_id = ? ORDER BY is_course, name",
+        "SELECT name FROM courses WHERE user_id = ? ORDER BY is_course DESC, name",
         (session["user_id"],)
     ).fetchall()
     
