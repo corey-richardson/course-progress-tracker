@@ -411,7 +411,7 @@ def change_password():
 def skills():
     course_topics = db.execute(
         "SELECT topics FROM courses \
-        WHERE user_id = ? AND is_complete = true",
+        WHERE user_id = ? AND is_complete = 2",
         (session["user_id"],)
     ).fetchall()
     
