@@ -9,27 +9,26 @@
 
     <br>
 
-    {% if type == "Courses" %}
-    <form action="/" method="post">
-    {% else %}
-    <form action="/modules" method="post">
-    {% endif %}
-        <div class="mb-3" style="display: inline-block;">
-            <select class="form-select mx-auto w-auto" name="sort_index" style="margin: 0 0; width: 50%;">
-                <option selected disabled hidden>Refine Results</option>
-                <option value="name">Name</option>
-                <option value="provider">Provider</option>
-                <option value="completed">Completed Courses</option>
-                <option value="inProgress">In Progress</option>
-                <option value="incomplete">Incomplete Courses</option>
-                <option value="hideCompleted">Hide Completed</option>
-            </select>
-        </div>
-        <button style="position: relative; bottom: 2px;" class="btn btn-primary" type="submit">Refine</button> <br>
-
-    </form>
-
     <div class="course"> <!-- In div to match course containers width-->
+        {% if type == "Courses" %}
+        <form action="/" method="post">
+        {% else %}
+        <form action="/modules" method="post">
+        {% endif %}
+            <div class="mb-3" style="display: inline-block;">
+                <select class="form-select mx-auto w-auto" name="sort_index" style="margin: 0 0; width: 50%;">
+                    <option selected disabled hidden>Refine Results</option>
+                    <option value="name">Name</option>
+                    <option value="provider">Provider</option>
+                    <option value="completed">Completed Courses</option>
+                    <option value="inProgress">In Progress</option>
+                    <option value="incomplete">Incomplete Courses</option>
+                    <option value="hideCompleted">Hide Completed</option>
+                </select>
+            </div>
+            <button style="position: relative; bottom: 2px;" class="btn btn-primary" type="submit">Refine</button> <br>
+        </form>
+
         <hr>
     </div>
 
