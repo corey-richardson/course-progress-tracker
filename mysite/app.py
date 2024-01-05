@@ -95,14 +95,24 @@ def modules():
                     "SELECT * FROM courses WHERE user_id = ? AND is_course = false ORDER BY provider, name",
                     (session["user_id"],)
                 )
-            case "is_complete DESC":
+            case "completed":
                 modules = db.execute(
-                    "SELECT * FROM courses WHERE user_id = ? AND is_course = false ORDER BY is_complete DESC",
+                    "SELECT * FROM courses WHERE user_id = ? AND is_course = false ORDER BY is_complete DESC, name",
                     (session["user_id"],)
                 )
-            case "is_complete ASC":
+            case "inProgress":
                 modules = db.execute(
-                    "SELECT * FROM courses WHERE user_id = ? AND is_course = false ORDER BY is_complete ASC",
+                    "SELECT * FROM courses WHERE user_id = ? AND is_course = false ORDER BY CASE is_complete WHEN 1 THEN 1 WHEN 2 THEN 2 WHEN 0 THEN 3 END, name",
+                    (session["user_id"],)
+                )
+            case "incomplete":
+                modules = db.execute(
+                    "SELECT * FROM courses WHERE user_id = ? AND is_course = false ORDER BY is_complete ASC, name",
+                    (session["user_id"],)
+                )
+            case "hideCompleted":
+                modules = db.execute(
+                    "SELECT * FROM courses WHERE user_id = ? AND is_course = false AND is_complete != 2 ORDER BY is_complete DESC, name",
                     (session["user_id"],)
                 )
             case _: # name or anything else
