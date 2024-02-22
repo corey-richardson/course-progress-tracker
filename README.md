@@ -1,5 +1,8 @@
 # Course Progress Tracker
 #### [Video Demo](https://www.youtube.com/watch?v=7JPFLDDc1sU)
+
+[![wakatime](https://wakatime.com/badge/user/55c30436-1509-4eb9-9f18-fa9b7c6060c4/project/e96b0cc0-0fd1-40dc-907e-82d0faf4550e.svg)](https://wakatime.com/badge/user/55c30436-1509-4eb9-9f18-fa9b7c6060c4/project/e96b0cc0-0fd1-40dc-907e-82d0faf4550e)
+
 #### Description:
 
 Course Progress Tracker is a Flask Web Application that allows the user to track their enrollments to online courses and university modules. The database is maintained by `sqlite3` in `courses.db`, consisting of tables `users` and `courses`.
